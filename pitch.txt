@@ -1,0 +1,4 @@
+Pitch:
+Our team is developing a turn-based strategy game for 2 players that combines the depth and complexity of chess in the setting of some magic universe idk. In our game, players command a diverse array of troops, each with unique abilities, which combat on the tile field full of various objects that make gaming experice more exciting. The ultimate  goal of both players is to either capture the enemy's flag or eliminate all of their troops. The diversity of troops abilities opens new ways for stratigical victories. 
+
+In this project, our primary focus is to achieve high results in utilizing code with user interface and seamlessly integrate version control tools into our development workflow. By aligning our project with these learning goals, we aim to not only improve the user experience of our game but also equip our team members with valuable skills and knowledge that can be applied in future projects.
