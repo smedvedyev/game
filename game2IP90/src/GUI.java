@@ -1,20 +1,21 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.Arrays;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GUI {
     JFrame mainFrame;
     JPanel panelForTiles;
     Tile tiles[][];
 
+    JPanel menuPanel;
+    JButton play;
+    JButton rules;
+
     /**
-     * @param width
-     * @param length
+     * method to create the initial field with all the troops and obstacles.
+     * 
+     * @param width width of the field
+     * @param length length of the field
      */
     public void generateField(int width, int length) {
         //TODO set coords for spawn points for two players
@@ -26,7 +27,6 @@ public class GUI {
         mainFrame.getContentPane().setLayout(new BoxLayout(mainFrame.getContentPane(), BoxLayout.Y_AXIS));
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setResizable(false);
-
 
         mainFrame.pack();
 
@@ -64,13 +64,35 @@ public class GUI {
         // BoxLayout can't be shared
         mainFrame.pack();
         mainFrame.setVisible(true);
+    }
 
+    public void generateMenu() {
+        menuPanel = new JPanel();
+        play = new JButton("PLAY");
+        rules = new JButton("RULES");
+
+        mainFrame.add(menuPanel, BorderLayout.CENTER);
+
+        menuPanel.setSize(450, 300);
+        menuPanel.setBackground(Color.RED);
+
+        menuPanel.add(play, BorderLayout.NORTH);
+        menuPanel.add(rules, BorderLayout.SOUTH);
+
+        menuPanel.validate();
+        mainFrame.add(menuPanel, BorderLayout.CENTER);
+        
+        mainFrame.pack();
+        mainFrame.setVisible(true);
     }
 
     GUI(int length, int width) {
         generateField(length, width);
     }
 
+    GUI() {
+        generateMenu();
+    }
 
 
 
