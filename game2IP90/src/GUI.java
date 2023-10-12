@@ -66,6 +66,9 @@ public class GUI {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Method to create menu pop up.
+     */
     public void generateMenu() {
         menu = new JPanel();
         play = new JButton("PLAY");
