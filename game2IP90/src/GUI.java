@@ -34,6 +34,8 @@ public class GUI {
 
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Color g = new Color(0, 210, 110);
+
         panelForTiles = new JPanel();
         panelForTiles.setBackground(Color.DARK_GRAY);
         panelForTiles.setLayout(new GridLayout(width, length));
@@ -45,7 +47,7 @@ public class GUI {
             for (int k = 0; k < tiles[0].length; k++) {
 
                 Tile temp = new Tile();
-                temp.setBackground(Color.GREEN);
+                temp.setBackground(g);
                 temp.setPreferredSize(new Dimension(75, 75));
                 temp.setMaximumSize(temp.getPreferredSize());
                 temp.setBorder(BorderFactory.createLineBorder(Color.black));
