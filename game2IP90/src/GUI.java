@@ -1,7 +1,7 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -10,10 +10,16 @@ import javax.swing.JPanel;
 public class GUI {
     JFrame mainFrame;
     JPanel panelForTiles;
-    JPanel tiles[][];
+    Tile tiles[][];
 
-    public void generateField(int[][] grid) {
-        // setting the main mainFrame
+    /**
+     * @param width
+     * @param length
+     */
+    public void generateField(int width, int length) {
+        //TODO set coords for spawn points for two players
+        int[][] startPoints = {{2,0},{3,0},{4,0},{5,0},{6,0},{2,12},{3,12},{4,12},{5, 12},{6,12}};
+        // setting the main mainframe
         mainFrame = new JFrame("Game");
 
         mainFrame.setSize(900, 650);
@@ -30,14 +36,14 @@ public class GUI {
 
         panelForTiles = new JPanel();
         panelForTiles.setBackground(Color.DARK_GRAY);
-        panelForTiles.setLayout(new GridLayout(grid[0].length, grid.length));
+        panelForTiles.setLayout(new GridLayout(width, length));
         panelForTiles.setPreferredSize(new Dimension(17 * 75, 9 * 75));// hardCoded sizing
         panelForTiles.setMaximumSize(new Dimension(17 * 75, 9 * 75));  // hardCoded sizing
         panelForTiles.setMinimumSize(new Dimension(17 * 75150, 9 * 75));  // har
-        tiles = new JPanel[grid[0].length][grid.length];
-
+        tiles = new Tile[width][length];
         for (int i = 0; i < tiles.length; i++) {
             for (int k = 0; k < tiles[0].length; k++) {
+
                 Tile temp = new Tile();
                 temp.setBackground(Color.GREEN);
                 temp.setPreferredSize(new Dimension(75, 75));
@@ -48,6 +54,7 @@ public class GUI {
                 tiles[i][k] = temp;
             }
         }
+
         panelForTiles.revalidate();
         panelForTiles.repaint();
         mainFrame.add(panelForTiles);
@@ -58,8 +65,11 @@ public class GUI {
 
     }
 
-    GUI(int[][] grid) {
-        generateField(grid);
+    GUI(int length, int width) {
+        generateField(length, width);
     }
+
+
+
 
 }
