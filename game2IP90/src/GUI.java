@@ -7,7 +7,7 @@ public class GUI {
     JPanel panelForTiles;
     Tile tiles[][];
 
-    JPanel menuPanel;
+    JMenu menu;
     JButton play;
     JButton rules;
 
@@ -67,23 +67,17 @@ public class GUI {
     }
 
     public void generateMenu() {
-        menuPanel = new JPanel();
+        menu = new JMenu();
         play = new JButton("PLAY");
         rules = new JButton("RULES");
 
-        mainFrame.add(menuPanel, BorderLayout.CENTER);
+        menu.setSize(450, 300);
+        menu.setBackground(Color.GRAY);
 
-        menuPanel.setSize(450, 300);
-        menuPanel.setBackground(Color.RED);
+        menu.add(play, BorderLayout.NORTH);
+        menu.add(rules, BorderLayout.SOUTH);
 
-        menuPanel.add(play, BorderLayout.NORTH);
-        menuPanel.add(rules, BorderLayout.SOUTH);
-
-        menuPanel.validate();
-        mainFrame.add(menuPanel, BorderLayout.CENTER);
-        
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+        mainFrame.add(menu, BorderLayout.CENTER);
     }
 
     GUI(int length, int width) {
@@ -93,7 +87,4 @@ public class GUI {
     GUI() {
         generateMenu();
     }
-
-
-
 }
