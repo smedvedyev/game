@@ -9,7 +9,7 @@ public class Game {
 
     public void run() {
         gameField = new Field(LENGTH, WIDTH);
-        mainMenu = new GUI();
+        mainMenu = new GUI(true);
     }
 
     public static void main(String[] args) throws Exception {

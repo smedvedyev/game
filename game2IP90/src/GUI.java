@@ -7,6 +7,8 @@ public class GUI {
     JPanel panelForTiles;
     Tile tiles[][];
 
+    JPanel mainPanel;
+
     JPanel menu;
     JButton play;
     JButton rules;
@@ -28,12 +30,15 @@ public class GUI {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setResizable(false);
 
+        mainPanel = new JPanel();
+        mainPanel.setBackground(Color.GRAY);
+        //mainPanel.setPreferredSize(new Dimension(17 * 75, 9 * 75));
+
         mainFrame.pack();
-
         mainFrame.setVisible(true);
-
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //Colour of the grass
         Color g = new Color(0, 210, 110);
 
         panelForTiles = new JPanel();
@@ -59,9 +64,27 @@ public class GUI {
 
         panelForTiles.revalidate();
         panelForTiles.repaint();
-        mainFrame.add(panelForTiles);
+        mainPanel.add(panelForTiles);
+        mainFrame.add(mainPanel);
 
         // BoxLayout can't be shared
+        mainFrame.pack();
+        mainFrame.setVisible(true);
+
+        //main menu pop up text
+        menu = new JPanel();
+        play = new JButton("PLAY");
+        rules = new JButton("RULES");
+
+        menu.setSize(450, 300);
+        menu.setBackground(Color.GRAY);
+        menu.setVisible(true);
+
+        menu.add(play, BorderLayout.NORTH);
+        menu.add(rules, BorderLayout.SOUTH);
+
+        mainPanel.add(menu);
+
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
@@ -76,20 +99,22 @@ public class GUI {
 
         menu.setSize(450, 300);
         menu.setBackground(Color.GRAY);
+        menu.setVisible(true);
 
         menu.add(play, BorderLayout.NORTH);
         menu.add(rules, BorderLayout.SOUTH);
 
-        mainFrame.add(menu, BorderLayout.CENTER);
+        mainPanel.add(menu, BorderLayout.CENTER);
 
         mainFrame.pack();
+        mainFrame.setVisible(true);
     }
 
     GUI(int length, int width) {
         generateField(length, width);
     }
 
-    GUI() {
+    GUI(boolean start) {
         generateMenu();
     }
 }
