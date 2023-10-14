@@ -2,12 +2,15 @@ import java.awt.*;
 import java.util.Arrays;
 import javax.swing.*;
 
+/**
+ * Generates a frame with the field, obstacles and troops
+ */
 public class GUI {
     JFrame mainFrame;
     JPanel panelForTiles;
     Tile tiles[][];
 
-    JPanel mainPanel;
+    // JPanel mainPanel;
 
     JPanel menu;
     JButton play;
@@ -30,9 +33,9 @@ public class GUI {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setResizable(false);
 
-        mainPanel = new JPanel();
-        mainPanel.setBackground(Color.GRAY);
-        //mainPanel.setPreferredSize(new Dimension(17 * 75, 9 * 75));
+        // mainPanel = new JPanel();
+        // mainPanel.setBackground(Color.GRAY);
+        // mainPanel.setPreferredSize(new Dimension(17 * 75, 9 * 75));
 
         mainFrame.pack();
         mainFrame.setVisible(true);
@@ -64,29 +67,29 @@ public class GUI {
 
         panelForTiles.revalidate();
         panelForTiles.repaint();
-        mainPanel.add(panelForTiles);
-        mainFrame.add(mainPanel);
+        mainFrame.add(panelForTiles);
+        // mainFrame.add(mainPanel);
 
         // BoxLayout can't be shared
         mainFrame.pack();
         mainFrame.setVisible(true);
 
         //main menu pop up text
-        menu = new JPanel();
-        play = new JButton("PLAY");
-        rules = new JButton("RULES");
+        // menu = new JPanel();
+        // play = new JButton("PLAY");
+        // rules = new JButton("RULES");
 
-        menu.setSize(450, 300);
-        menu.setBackground(Color.GRAY);
-        menu.setVisible(true);
+        // menu.setSize(450, 300);
+        // menu.setBackground(Color.GRAY);
+        // menu.setVisible(true);
 
-        menu.add(play, BorderLayout.NORTH);
-        menu.add(rules, BorderLayout.SOUTH);
+        // menu.add(play, BorderLayout.NORTH);
+        // menu.add(rules, BorderLayout.SOUTH);
 
-        mainPanel.add(menu);
+        // mainPanel.add(menu);
 
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+        // mainFrame.pack();
+        // mainFrame.setVisible(true);
     }
 
     /**
@@ -104,7 +107,7 @@ public class GUI {
         menu.add(play, BorderLayout.NORTH);
         menu.add(rules, BorderLayout.SOUTH);
 
-        mainPanel.add(menu, BorderLayout.CENTER);
+        // mainPanel.add(menu, BorderLayout.CENTER);
 
         mainFrame.pack();
         mainFrame.setVisible(true);
@@ -114,7 +117,7 @@ public class GUI {
         generateField(length, width);
     }
 
-    GUI(boolean start) {
-        generateMenu();
-    }
+    // GUI() {
+    //     generateMenu();
+    // }
 }
