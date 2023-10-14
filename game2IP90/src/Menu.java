@@ -11,6 +11,8 @@ public class Menu {
     JButton rules;  //button to see how to play
     JLabel title;
 
+    ClickReporter clicker;
+
     /**
      * generates the menu screen with two clickable buttons.
      */
@@ -44,11 +46,19 @@ public class Menu {
         menuPanel.add(title);
 
         menuFrame.add(menuPanel);
+
+        clicker = new ClickReporter();
+        play.addMouseListener(clicker);
+
         menuFrame.setVisible(true);
         menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     Menu() {
         generateMenu();
+    }
+
+    public void addActionListener(ClickReporter clickReporter) {
+
     }
 }
