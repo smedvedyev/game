@@ -1,31 +1,33 @@
-import java.awt.event.*;
-
 /**
  * Class to run our game and all the inputs.
  */
 public class Game {
     final int WIDTH = 17;
     final int LENGTH = 9;
-    Field gameField;
-    Menu mainMenu;
+    ActionHandler cl = new ActionHandler(this);
+
+    public MainFrame gameField = new MainFrame(this);
+
+
     Troop[] allTroops;
-    
-    ClickReporter listener;    
+    States state = States.IDLE;
 
-    public void run() {
-        listener = new ClickReporter();
-        mainMenu = new Menu();
 
-        if (listener.pressed) {
-            gameField = new Field(LENGTH, WIDTH);
+    private void mainStateMachine(States newState){
+        switch(newState){
+            case IDLE:
+            break;
+            case START:
+
         }
-        listener.pressed = false;
-
-
-        // gameField = new Field(LENGTH, WIDTH);
     }
 
     public static void main(String[] args) throws Exception {
-        new Game().run();
+        new Game();
     }
+
+    public Game() {
+        gameField = new MainFrame(this);
+    }
+
 }
