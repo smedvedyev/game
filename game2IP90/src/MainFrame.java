@@ -33,10 +33,10 @@ public class MainFrame {
 
     public void changePanel() {
         mainFrame.remove(activePanel);
-        if(activePanel instanceof Menu){
+        if (activePanel instanceof Menu) {
             mainFrame.add(field);
             activePanel = field;
-        }else{
+        } else {
             mainFrame.add(menu);
             activePanel = menu;
 
