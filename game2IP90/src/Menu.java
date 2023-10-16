@@ -34,17 +34,16 @@ public class Menu extends JPanel{
         playButton.setFont(new Font("Arial", Font.BOLD, 18));
         playButton.setBackground(Color.white);
 
-
         playButton.setActionCommand("CHANGE_TO_FIELD");
-
-      
-
 
         rulesButton = new JButton("RULES");
         rulesButton.setPreferredSize(new Dimension(150, 50));
         rulesButton.setFocusPainted(false);
         rulesButton.setFont(new Font("Arial", Font.BOLD, 18));
         rulesButton.setBackground(Color.white);
+
+        rulesButton.setActionCommand("RULES");
+        
 
         buttons.add(playButton, gbc);
         buttons.add(Box.createVerticalStrut(100));

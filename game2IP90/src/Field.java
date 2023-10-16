@@ -14,6 +14,7 @@ public class Field extends JPanel {
     Tile tiles[][];
     ActionListener AL_F;
     MainFrame mf;
+    private JButton back;
 
     Field(MainFrame mf) {
         this.mf = mf;
@@ -52,6 +53,23 @@ public class Field extends JPanel {
         
         revalidate();
         repaint();
+
+        // JPanel buttonPanel = new JPanel();
+        // buttonPanel.setLayout(new GridLayout());
+        // back = new JButton("X");
+        // back.setPreferredSize(new Dimension(30, 30));
+        // back.setFocusPainted(false);
+        // back.setFont(new Font("Sans", Font.BOLD, 10));
+        // back.setBackground(Color.white);
+
+        // back.setActionCommand("BACK");
+
+        // buttonPanel.add(back);
+        // add(buttonPanel);
     }
+
+    // public void addListener(ActionHandler al) {
+    //     back.addActionListener(al);
+    // }
 
 }
