@@ -49,9 +49,7 @@ public class Field extends JPanel {
         panelForTiles.repaint();
 
         add(panelForTiles);
-
-
-
+        
         revalidate();
         repaint();
     }

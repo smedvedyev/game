@@ -10,7 +10,18 @@ public class ActionHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        gm.gameField.changePanel();
+        String action = e.getActionCommand();
+        switch(action){
+            case "CHANGE_TO_FIELD":
+            gm.gameField.changePanel();
+
+            break;
+            case "RULES":
+                System.out.print("motherfucker");
+
+            break;
+        }
+
     }
        
 }

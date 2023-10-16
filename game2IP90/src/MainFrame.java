@@ -22,7 +22,7 @@ public class MainFrame {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setResizable(false);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menu.playButton.addActionListener(gm.cl);
+        menu.addListener(gm.cl);
         mainFrame.add(menu);
         // changePanel();
         mainFrame.revalidate();

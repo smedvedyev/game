@@ -55,4 +55,9 @@ public class Menu extends JPanel{
         add(buttons, gbc);
     }
 
+    public void addListener(ActionHandler al){
+        playButton.addActionListener(al);
+        rulesButton.addActionListener(al);
+    }
+
 }

@@ -13,15 +13,6 @@ public class Game {
     States state = States.IDLE;
 
 
-    private void mainStateMachine(States newState){
-        switch(newState){
-            case IDLE:
-            break;
-            case START:
-
-        }
-    }
-
     public static void main(String[] args) throws Exception {
         new Game();
     }
