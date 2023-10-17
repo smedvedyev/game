@@ -1,5 +1,7 @@
 public enum States {
     IDLE,
-    START, 
+    WALK, 
+    SHOOT
+
 
 }

@@ -17,7 +17,8 @@ public class ActionHandler implements ActionListener {
             break;
 
             case "RULES":
-                gm.gameField.changePanel(2);
+                Rules rules = new Rules(gm);
+                System.out.println("eeee");
             break;
 
             case "BACK":

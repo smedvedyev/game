@@ -9,7 +9,7 @@ public class MainFrame {
     public Menu menu = new Menu();
     JPanel activePanel = menu;
 
-    Rules rulesPanel = new Rules();
+    // Rules rulesPanel = new Rules();
 
     Field field = new Field(this);
     
@@ -25,8 +25,8 @@ public class MainFrame {
         mainFrame.setResizable(false);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.addListener(gm.cl);
-        rulesPanel.addListener(gm.cl);
-        // field.addListener(gm.cl);
+        // rulesPanel.addListener(gm.cl);
+        field.addListener(gm.cl);
         mainFrame.add(menu);
         // changePanel();
         mainFrame.revalidate();
@@ -40,9 +40,9 @@ public class MainFrame {
         if (n == 1) {
             mainFrame.add(field);
             activePanel = field;
-        } else if (n == 2) {
-            mainFrame.add(rulesPanel);
-            activePanel = rulesPanel;
+        // } else if (n == 2) {
+        //     mainFrame.add(rulesPanel);
+        //     activePanel = rulesPanel;
         } else if (n == 3) {
             mainFrame.add(menu);
             activePanel = menu;
@@ -51,6 +51,7 @@ public class MainFrame {
             activePanel = menu;
         }
         mainFrame.revalidate();
+        mainFrame.repaint();
         mainFrame.pack();
     }
 
