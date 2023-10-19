@@ -1,8 +1,9 @@
 import java.awt.Dimension;
 
 public class Infantry extends Troop {
-    Infantry(int x, int y, int player){
-        super(x, y,player);
+
+    Infantry(int x, int y, int player) {
+        super(x, y, player);
     }
 
     @Override

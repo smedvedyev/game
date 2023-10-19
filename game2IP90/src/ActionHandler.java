@@ -4,6 +4,8 @@ import java.awt.event.*;
  */
 public class ActionHandler implements ActionListener {
     Game gm;
+    Rules rules;
+
     ActionHandler(Game gm){
         this.gm = gm;
     }
@@ -17,12 +19,12 @@ public class ActionHandler implements ActionListener {
             break;
 
             case "RULES":
-                Rules rules = new Rules(gm);
+                rules = new Rules(gm);
                 System.out.println("eeee");
             break;
 
             case "BACK":
-                gm.gameField.changePanel(3);
+                gm.gameField.changePanel(2);
             break;
         }
 

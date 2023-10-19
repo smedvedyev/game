@@ -15,13 +15,17 @@ public class Field extends JPanel {
     private static int[][] LOBBER_START = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
     private static int[][] TANK_START = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
     private static int[][] SPRINTER_START = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
-    private static int[][] CAPITAN = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
+    private static int[][] CAPTAIN = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
     JPanel panelForTiles;
     Tile tiles[][];
     ActionListener AL_F;
     MainFrame mf;
 
     JButton back;
+
+    Popup pop;
+    JButton walk;
+    JButton shoot;
 
     Field(MainFrame mf) {
         this.mf = mf;
@@ -65,9 +69,9 @@ public class Field extends JPanel {
         revalidate();
         repaint();
 
+        // The Back Panel //
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout());
-
 
         back = new JButton("←");
         back.setLayout(new GridLayout());
@@ -105,6 +109,9 @@ public class Field extends JPanel {
     public void addListener(ActionHandler al){
         back.addActionListener(al);
         back.setActionCommand("BACK");
+
+        // walk.addActionListener(al);
+        // shoot.addActionListener(al);
     }
 
 }
