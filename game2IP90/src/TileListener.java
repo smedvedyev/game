@@ -6,9 +6,11 @@ public class TileListener extends MouseAdapter {
     Tile selectedTile;
     PopUp popup;
     Troop currentTroop;
+
     public TileListener(Game gm){
         state = States.IDLE_P1;
     }
+    
     public void changeState (String action){
         switch (action){
             case "walk":
@@ -44,6 +46,7 @@ public class TileListener extends MouseAdapter {
 
             } else {
                 System.out.println("Select a troop");
+                popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
             }
             case SHOOT_P1:
             // if (currentTroop.shootingRange.&& selectedTile.troop.player == 1) {
