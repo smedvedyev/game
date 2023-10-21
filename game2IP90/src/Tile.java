@@ -1,6 +1,7 @@
 import java.awt.Dimension;
 import java.awt.Point;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Tile extends JPanel{
@@ -12,10 +13,13 @@ public class Tile extends JPanel{
         setPreferredSize(new Dimension(100,100));
     }
     
-    public void addTroop(Troop troop){
+    public void addTroop(Troop troop, JLabel image){
         this.troop = troop;
+        add(image);
+        repaint();
     }
     public void removeTroop(){
         this.troop = null;
     }
+    
 }
