@@ -10,9 +10,7 @@ public class Game {
 
 
     Troop[] allTroops;
-    States state = States.IDLE;
-
-
+   
     public static void main(String[] args) throws Exception {
         new Game();
     }

@@ -11,11 +11,12 @@ public class Field extends JPanel {
     private static final int FIELD_WIDTH = 9;
     private static final int FIELD_LENGTH = 17;
     //1 cap,2 lob,2 inf, 1 sprinter, 1 tank
-    private static int[][] INFANTRY_START = {{1,0}, {0,2}, {1,3}, {1,4},{1,5},{0,6},{1,8}};
-    private static int[][] LOBBER_START = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
-    private static int[][] TANK_START = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
-    private static int[][] SPRINTER_START = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
-    private static int[][] CAPTAIN = {{15,0}, {16,2}, {15,3}, {15,4},{15,5},{16,6},{15,8}};
+    private static int[][] INFANTRY = {{0,1}, {8,1},{0,15},{8,15}};
+    private static int[][] SPRINTER = { {6,0},{2,16}};
+    private static int[][] LOBBER = { {3,1}, {5,1},{3,15},{5,15}};
+    private static int[][] CAPITAN = { {4,1}, {4,15}};
+    private static int[][] TANK = { {2,0}, {6,16}};
+    
     JPanel panelForTiles;
     Tile tiles[][];
     ActionListener AL_F;
@@ -53,7 +54,7 @@ public class Field extends JPanel {
                 temp.setPreferredSize(new Dimension(TILE_SIZE, TILE_SIZE));
                 temp.setMaximumSize(temp.getPreferredSize());
                 temp.setBorder(BorderFactory.createLineBorder(Color.black));
-                temp.addMouseListener(new TileListener());
+                temp.addMouseListener(new TileListener(mf.gm));
 
                 panelForTiles.add(temp);
                 tiles[i][k] = temp;
@@ -95,16 +96,31 @@ public class Field extends JPanel {
         add(back, constraints);
     }
 
-    // public void generateTroops() {
-    //     for(int i = 0; i<tiles.length; i++){
-    //         for(int k = 0; k < tiles[0].length; k++){
-    //             if( == STARTING_POINTS_P1[]){
+    public void generateTroops() {
+        //put infantry
+        tiles[INFANTRY[0][0]][INFANTRY[0][1]].addTroop(new Infantry(tiles[INFANTRY[0][0]][INFANTRY[0][1]].getX(), tiles[INFANTRY[0][0]][INFANTRY[0][1]].getY(), 1));
+        tiles[INFANTRY[1][0]][INFANTRY[1][1]].addTroop(new Infantry(tiles[INFANTRY[1][0]][INFANTRY[1][1]].getX(), tiles[INFANTRY[1][0]][INFANTRY[1][1]].getY(), 1));
+        tiles[INFANTRY[2][0]][INFANTRY[2][1]].addTroop(new Infantry(tiles[INFANTRY[2][0]][INFANTRY[2][1]].getX(), tiles[INFANTRY[2][0]][INFANTRY[2][1]].getY(), 2));
+        tiles[INFANTRY[3][0]][INFANTRY[3][1]].addTroop(new Infantry(tiles[INFANTRY[3][0]][INFANTRY[3][1]].getX(), tiles[INFANTRY[3][0]][INFANTRY[3][1]].getY(), 2));
+        //put sprinters
+        tiles[SPRINTER[0][0]][SPRINTER[0][1]].addTroop(new Infantry(tiles[SPRINTER[0][0]][SPRINTER[0][1]].getX(), tiles[SPRINTER[0][0]][SPRINTER[0][1]].getY(), 1));
+        tiles[SPRINTER[1][0]][SPRINTER[1][1]].addTroop(new Infantry(tiles[SPRINTER[1][0]][SPRINTER[1][1]].getX(), tiles[SPRINTER[1][0]][SPRINTER[1][1]].getY(), 2));
+        //put lobbers
+        tiles[LOBBER[0][0]][LOBBER[0][1]].addTroop(new Infantry(tiles[LOBBER[0][0]][LOBBER[0][1]].getX(), tiles[LOBBER[0][0]][LOBBER[0][1]].getY(), 1));
+        tiles[LOBBER[1][0]][LOBBER[1][1]].addTroop(new Infantry(tiles[LOBBER[1][0]][LOBBER[1][1]].getX(), tiles[LOBBER[1][0]][LOBBER[1][1]].getY(), 1));
+        tiles[LOBBER[2][0]][LOBBER[2][1]].addTroop(new Infantry(tiles[LOBBER[2][0]][LOBBER[2][1]].getX(), tiles[LOBBER[2][0]][LOBBER[2][1]].getY(), 2));
+        tiles[LOBBER[3][0]][LOBBER[3][1]].addTroop(new Infantry(tiles[LOBBER[3][0]][LOBBER[3][1]].getX(), tiles[LOBBER[3][0]][LOBBER[3][1]].getY(), 2));
+        //put capitans
+        tiles[CAPITAN[0][0]][CAPITAN[0][1]].addTroop(new Infantry(tiles[CAPITAN[0][0]][CAPITAN[0][1]].getX(), tiles[CAPITAN[0][0]][CAPITAN[0][1]].getY(), 1));
+        tiles[CAPITAN[1][0]][CAPITAN[1][1]].addTroop(new Infantry(tiles[CAPITAN[1][0]][CAPITAN[1][1]].getX(), tiles[CAPITAN[1][0]][CAPITAN[1][1]].getY(), 2));
+        //put tanks
+        tiles[TANK[0][0]][TANK[0][1]].addTroop(new Infantry(tiles[TANK[0][0]][TANK[0][1]].getX(), tiles[TANK[0][0]][TANK[0][1]].getY(), 1));
+        tiles[TANK[1][0]][TANK[1][1]].addTroop(new Infantry(tiles[TANK[1][0]][TANK[1][1]].getX(), tiles[TANK[1][0]][TANK[1][1]].getY(), 2));
 
-    //             }
-    //         }
 
-    //     }
-    // }
+
+
+    }
 
     public void addListener(ActionHandler al){
         back.addActionListener(al);

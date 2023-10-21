@@ -15,4 +15,7 @@ public class Tile extends JPanel{
     public void addTroop(Troop troop){
         this.troop = troop;
     }
+    public void removeTroop(){
+        this.troop = null;
+    }
 }
