@@ -48,6 +48,8 @@ public class TileListener extends MouseAdapter {
                 System.out.println("Select a troop");
                 popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
             }
+            break;
+
             case SHOOT_P1:
             // if (currentTroop.shootingRange.&& selectedTile.troop.player == 1) {
             //     popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
@@ -55,6 +57,11 @@ public class TileListener extends MouseAdapter {
             // } else {
             //     System.out.println("Select a troop");
             // }
+            break;
+
+            case WALK_P1:
+                System.out.println("waddle");
+            break;
         }
         
     }

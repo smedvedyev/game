@@ -23,8 +23,8 @@ public class PopUp extends JFrame implements ActionListener{
         JLabel popUpLabel = new JLabel();
         popUpPanel.add(popUpLabel);
 
-        walk = new JButton(" ");
-        shoot = new JButton(" ");
+        walk = new JButton("WALK");
+        shoot = new JButton("SHOOT");
         popUpPanel.add(walk);
         popUpPanel.add(shoot);
 

@@ -8,7 +8,7 @@ public class Infantry extends Troop {
 
     @Override
     public void Move(Dimension d) {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'Move'");
     }
 
