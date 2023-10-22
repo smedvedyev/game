@@ -124,11 +124,11 @@ public class Field extends JPanel {
     }
 
     public void generateTroops() {
-        java.net.URL imgURLI = getClass().getResource("source/images/infantry.jpg");     
+        java.net.URL imgURLI = getClass().getResource("source/images/infantry.png");     
         java.net.URL imgURLT = getClass().getResource("source/images/tank.jpg");     
-        java.net.URL imgURLC = getClass().getResource("source/images/cap.jpg");     
-        java.net.URL imgURLS = getClass().getResource("source/images/sprint.jpg");     
-        java.net.URL imgURLL = getClass().getResource("source/images/lobber.jpg");     
+        java.net.URL imgURLC = getClass().getResource("source/images/cap.png");     
+        java.net.URL imgURLS = getClass().getResource("source/images/sprint.png");     
+        java.net.URL imgURLL = getClass().getResource("source/images/lobber.png");     
 
         infImage1 = new JLabel("",new ImageIcon(imgURLI),JLabel.CENTER);
         infImage2 = new JLabel("",new ImageIcon(imgURLI),JLabel.CENTER);
