@@ -23,8 +23,8 @@ public class PopUp extends JFrame implements ActionListener{
         JLabel popUpLabel = new JLabel();
         popUpPanel.add(popUpLabel);
 
-        walk = new JButton("WALK");
-        shoot = new JButton("SHOOT");
+        walk = new JButton(" ");
+        shoot = new JButton(" ");
         popUpPanel.add(walk);
         popUpPanel.add(shoot);
 
@@ -45,13 +45,9 @@ public class PopUp extends JFrame implements ActionListener{
             System.out.println("He's a runner, he's a trackstar");
             tl.changeState("walk");
             pop.hide();
-            
-
-
         } else {
             System.out.println("Shoot the jizz and out he is");
             tl.changeState("shoot");
-
             pop.hide();
         }
     }
