@@ -1,18 +1,19 @@
-import java.awt.Dimension;
+import java.awt.Point;
+import javax.swing.JLabel;
 
 public class Tank extends Troop {
-    Tank(int x, int y,  int player){
-        super(x, y, player);
+    Tank(int x, int y,  int player, JLabel image){
+        super(x, y, player, image);
     }
 
     @Override
-    public void Move(Dimension d) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Move'");
+    public void move(Point d) {
+        location.x = (int) d.getX();
+        location.y = (int) d.getY();
     }
 
     @Override
-    public void Shoot(Dimension d) {
+    public void shoot(Point d) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Shoot'");
     }

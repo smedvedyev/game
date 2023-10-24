@@ -1,21 +1,22 @@
-import java.awt.Dimension;
+import java.awt.Point;
+import javax.swing.JLabel;
 
 public class Infantry extends Troop {
 
-    Infantry(int x, int y, int player) {
-        super(x, y, player);
+    Infantry(int x, int y, int player, JLabel image) {
+        super(x, y, player, image);
+        walkRange = 1;
+        shootRange = 2;
     }
 
     @Override
-    public void Move(Dimension d) {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'Move'");
+    public void move(Point d) {
+        location.x = (int) d.getX();
+        location.y = (int) d.getY();
     }
 
     @Override
-    public void Shoot(Dimension d) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Shoot'");
+    public void shoot(Point d) {
     }
 
 }

@@ -4,11 +4,26 @@ import java.awt.event.MouseEvent;
 public class TileListener extends MouseAdapter {
     States state = States.IDLE_P1;
     Tile selectedTile;
+    Tile actionTile ;
     PopUp popup;
     Troop currentTroop;
+    Field field;
 
-    public TileListener(Game gm){
+    public TileListener(Field field){
         state = States.IDLE_P1;
+        this.field = field;
+    }
+
+    public boolean checkRange(Troop t, Tile destinationTile, String action){
+        boolean res = false;
+        int difference = Math.abs((int)destinationTile.d.getX() - (int)t.location.getX());
+        switch (action){
+            case "walk":
+            if(difference <= t.walkRange && difference != 0){
+                res = true;
+            }
+        }
+        return res;
     }
     
     public void changeState (String action){
@@ -32,35 +47,43 @@ public class TileListener extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        Tile selectedTile = (Tile)e.getSource();
 
-        System.out.println("("+(int)selectedTile.d.getX() +","+ (int)selectedTile.d.getY()+")");
+        // System.out.println("("+(int)selectedTile.d.getX() +","+ (int)selectedTile.d.getY()+")");
         
 
         switch(state) {
             case IDLE_P1:
+            selectedTile = (Tile)e.getSource();
+
             if (selectedTile.troop != null && selectedTile.troop.player == 1) {
 
-                popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
+                popup = new PopUp(field.mf.mainFrame, (int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
                 currentTroop = selectedTile.troop;
 
             } else {
                 System.out.println("Select a troop");
-                popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
+                // popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
             }
             break;
 
             case SHOOT_P1:
-            // if (currentTroop.shootingRange.&& selectedTile.troop.player == 1) {
-            //     popup = new PopUp((int)selectedTile.d.getX(), (int)selectedTile.d.getY(), this);
-
-            // } else {
-            //     System.out.println("Select a troop");
-            // }
+                actionTile = (Tile)e.getSource();
+                if(Math.abs(actionTile.d.getX() - currentTroop.location.getX()) <= currentTroop.shootRange){
+                    currentTroop.shoot(actionTile.d);
+                    System.out.println("pew");
+                    
+                }
             break;
 
             case WALK_P1:
+                actionTile = (Tile)e.getSource();
+                // if(checkRange(currentTroop, actionTile, "walk")){
                 System.out.println("waddle");
+                field.moveTroop(selectedTile.d, actionTile.d);
+                currentTroop.move(actionTile.d);
+                // }
+                System.out.println("hui");
+                state = States.IDLE_P2;
             break;
         }
         

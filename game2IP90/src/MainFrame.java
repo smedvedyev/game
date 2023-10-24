@@ -3,10 +3,10 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MainFrame {
-    public Game gm;
+    Game gm;
     JFrame mainFrame;
     JPanel panelForTiles;
-    public Menu menu = new Menu();
+    Menu menu = new Menu();
     JPanel activePanel = menu;
 
 
@@ -32,11 +32,13 @@ public class MainFrame {
         mainFrame.pack();
         mainFrame.setVisible(true);
 
+
     }
 
     public void changePanel(int n) {
         mainFrame.remove(activePanel);
         if (n == 1) {
+            field.generateField();
             mainFrame.add(field);
             activePanel = field;
         } else if (n == 2) {

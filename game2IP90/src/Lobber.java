@@ -1,18 +1,21 @@
-import java.awt.Dimension;
+import java.awt.Point;
+import javax.swing.JLabel;
 
 public class Lobber extends Troop {
-    Lobber(int x, int y,  int player){
-        super(x, y ,  player);
+    Lobber(int x, int y,  int player, JLabel image){
+        super(x, y ,  player, image);
+        walkRange = 1;
+        shootRange = 3;
     }
 
     @Override
-    public void Move(Dimension d) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Move'");
+    public void move(Point d) {
+        location.x = (int) d.getX();
+        location.y = (int) d.getY();
     }
 
     @Override
-    public void Shoot(Dimension d) {
+    public void shoot(Point d) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'Shoot'");
     }

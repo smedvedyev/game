@@ -13,9 +13,12 @@ public class PopUp extends JFrame implements ActionListener{
     JButton shoot;
     TileListener tl;
 
+    JFrame JFrame;
+
     MainFrame mainFrame;
 
-    PopUp(int x, int y, TileListener tl) {
+    PopUp(JFrame field, int x, int y, TileListener tl) {
+        this.JFrame = field;
         this.tl = tl;
         JPanel popUpPanel = new JPanel();
         popUpPanel.setBackground(Color.LIGHT_GRAY);
@@ -32,9 +35,9 @@ public class PopUp extends JFrame implements ActionListener{
         shoot.addActionListener(this);
 
         PopupFactory pf = new PopupFactory();
-        int popx = 394 + (50 * x);
-        int popy = 182 + (50 * y);
-        pop = pf.getPopup(null, popUpPanel, popx, popy);
+        int popx = (50 * x);
+        int popy = (50 * y);
+        pop = pf.getPopup(JFrame, popUpPanel, popx, popy);
 
         pop.show();
     }

@@ -15,9 +15,6 @@ public class Game {
         new Game();
     }
 
-    public Game() {
-        gameField = new MainFrame(this);
-    }
     
 
 }

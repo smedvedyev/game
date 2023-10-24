@@ -1,19 +1,23 @@
-import java.awt.Dimension;
+import java.awt.Point;
+
+import javax.swing.JLabel;
 
 public abstract class Troop {
     int player;
-    int shootingRange;
-    int walkingRange;
-    Dimension location;
+    Point location;
+    JLabel image;
+    int walkRange;
+    int shootRange;
 
-    Troop (int x, int y, int player) {
+    Troop (int x, int y, int player, JLabel image) {
         this.player = player;
-        location = new Dimension(x, y);
+        location = new Point(x, y);
+        this.image = image;
     }
 
-    public abstract void Move(Dimension d);
+    public abstract void move(Point d);
 
-    public abstract void Shoot(Dimension d);
+    public abstract void shoot(Point d);
     
     
     
