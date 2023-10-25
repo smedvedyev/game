@@ -10,9 +10,17 @@ public class Infantry extends Troop {
     }
 
     @Override
-    public void move(Point d) {
-        location.x = (int) d.getX();
-        location.y = (int) d.getY();
+    public Boolean move(Point d) {
+        int diffx = Math.abs(d.x - location.x);
+        int diffy = Math.abs(d.y - location.y);
+        if (diffx <= walkRange && diffy <= walkRange) {
+            location.x = (int) d.getX();
+            location.y = (int) d.getY();
+            return true;
+        } else {
+            System.out.println("Out of range!");
+            return false;
+        }
     }
 
     @Override

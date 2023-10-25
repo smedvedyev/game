@@ -10,7 +10,6 @@ public class MainFrame {
     JPanel activePanel = menu;
 
 
-
     Field field = new Field(this);
     
 

@@ -13,12 +13,14 @@ public class PopUp extends JFrame implements ActionListener{
     JButton shoot;
     TileListener tl;
 
-    JFrame JFrame;
+    Field field;
+    JFrame frame;
 
     MainFrame mainFrame;
 
-    PopUp(JFrame field, int x, int y, TileListener tl) {
-        this.JFrame = field;
+    PopUp(Field field, int x, int y, TileListener tl) {
+        this.field = field;
+        frame = field.mf.mainFrame;
         this.tl = tl;
         JPanel popUpPanel = new JPanel();
         popUpPanel.setBackground(Color.LIGHT_GRAY);
@@ -35,11 +37,15 @@ public class PopUp extends JFrame implements ActionListener{
         shoot.addActionListener(this);
 
         PopupFactory pf = new PopupFactory();
-        int popx = (50 * x);
-        int popy = (50 * y);
-        pop = pf.getPopup(JFrame, popUpPanel, popx, popy);
+        int popx = 100 + (50 * x);
+        int popy = 200 + (50 * y);
+        pop = pf.getPopup(frame, popUpPanel, popx, popy);
 
         pop.show();
+    }
+
+    public void hidePop() {
+        pop.hide();
     }
 
     @Override
@@ -48,9 +54,11 @@ public class PopUp extends JFrame implements ActionListener{
             System.out.println("He's a runner, he's a trackstar");
             tl.changeState("walk");
             pop.hide();
-        } else {
+        } else if (p.getSource().equals(shoot)) {
             System.out.println("Shoot the jizz and out he is");
             tl.changeState("shoot");
+            pop.hide();
+        } else {
             pop.hide();
         }
     }

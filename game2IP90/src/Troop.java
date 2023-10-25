@@ -15,7 +15,7 @@ public abstract class Troop {
         this.image = image;
     }
 
-    public abstract void move(Point d);
+    public abstract Boolean move(Point d);
 
     public abstract void shoot(Point d);
     

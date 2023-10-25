@@ -7,7 +7,7 @@ public enum States {
     WALK_P2, 
     SHOOT_P2,
 
-
-
+    POPUP_P1,
+    POPUP_P2,
 
 }

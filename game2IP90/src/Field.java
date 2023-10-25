@@ -154,23 +154,23 @@ public class Field extends JPanel {
         //put infantry
         tiles[INFANTRY[0][0]][INFANTRY[0][1]].addTroop(new Infantry((int)tiles[INFANTRY[0][0]][INFANTRY[0][1]].d.getX(), (int)tiles[INFANTRY[0][0]][INFANTRY[0][1]].d.getY(), 1,infImage1 ),infImage1);
         System.out.println((int)tiles[INFANTRY[0][0]][INFANTRY[0][1]].d.getX()+","+ (int)tiles[INFANTRY[0][0]][INFANTRY[0][1]].d.getY());
-        tiles[INFANTRY[1][0]][INFANTRY[1][1]].addTroop(new Infantry(tiles[INFANTRY[1][0]][INFANTRY[1][1]].getX(), tiles[INFANTRY[1][0]][INFANTRY[1][1]].getY(), 1, infImage2),infImage2);
-        tiles[INFANTRY[2][0]][INFANTRY[2][1]].addTroop(new Infantry(tiles[INFANTRY[2][0]][INFANTRY[2][1]].getX(), tiles[INFANTRY[2][0]][INFANTRY[2][1]].getY(), 2, infImage3),infImage3);
-        tiles[INFANTRY[3][0]][INFANTRY[3][1]].addTroop(new Infantry(tiles[INFANTRY[3][0]][INFANTRY[3][1]].getX(), tiles[INFANTRY[3][0]][INFANTRY[3][1]].getY(), 2, infImage4),infImage4);
+        tiles[INFANTRY[1][0]][INFANTRY[1][1]].addTroop(new Infantry((int)tiles[INFANTRY[1][0]][INFANTRY[1][1]].d.getX(), (int)tiles[INFANTRY[1][0]][INFANTRY[1][1]].d.getY(), 1, infImage2),infImage2);
+        tiles[INFANTRY[2][0]][INFANTRY[2][1]].addTroop(new Infantry((int)tiles[INFANTRY[2][0]][INFANTRY[2][1]].d.getX(), (int)tiles[INFANTRY[2][0]][INFANTRY[2][1]].d.getY(), 2, infImage3),infImage3);
+        tiles[INFANTRY[3][0]][INFANTRY[3][1]].addTroop(new Infantry((int)tiles[INFANTRY[3][0]][INFANTRY[3][1]].d.getX(), (int)tiles[INFANTRY[3][0]][INFANTRY[3][1]].d.getY(), 2, infImage4),infImage4);
         //put sprinters
-        tiles[SPRINTER[0][0]][SPRINTER[0][1]].addTroop(new Sprinter(tiles[SPRINTER[0][0]][SPRINTER[0][1]].getX(), tiles[SPRINTER[0][0]][SPRINTER[0][1]].getY(), 1, sprinterImage1), sprinterImage1);
-        tiles[SPRINTER[1][0]][SPRINTER[1][1]].addTroop(new Sprinter(tiles[SPRINTER[1][0]][SPRINTER[1][1]].getX(), tiles[SPRINTER[1][0]][SPRINTER[1][1]].getY(), 2, sprinterImage2), sprinterImage2);
+        tiles[SPRINTER[0][0]][SPRINTER[0][1]].addTroop(new Sprinter((int)tiles[SPRINTER[0][0]][SPRINTER[0][1]].d.getX(), (int)tiles[SPRINTER[0][0]][SPRINTER[0][1]].d.getY(), 1, sprinterImage1), sprinterImage1);
+        tiles[SPRINTER[1][0]][SPRINTER[1][1]].addTroop(new Sprinter((int)tiles[SPRINTER[1][0]][SPRINTER[1][1]].d.getX(), (int)tiles[SPRINTER[1][0]][SPRINTER[1][1]].d.getY(), 2, sprinterImage2), sprinterImage2);
         //put lobbers
-        tiles[LOBBER[0][0]][LOBBER[0][1]].addTroop(new Lobber(tiles[LOBBER[0][0]][LOBBER[0][1]].getX(), tiles[LOBBER[0][0]][LOBBER[0][1]].getY(), 1, lobberImage1), lobberImage1);
-        tiles[LOBBER[1][0]][LOBBER[1][1]].addTroop(new Lobber(tiles[LOBBER[1][0]][LOBBER[1][1]].getX(), tiles[LOBBER[1][0]][LOBBER[1][1]].getY(), 1, lobberImage2), lobberImage2);
-        tiles[LOBBER[2][0]][LOBBER[2][1]].addTroop(new Lobber(tiles[LOBBER[2][0]][LOBBER[2][1]].getX(), tiles[LOBBER[2][0]][LOBBER[2][1]].getY(), 2, lobberImage3), lobberImage3);
-        tiles[LOBBER[3][0]][LOBBER[3][1]].addTroop(new Lobber(tiles[LOBBER[3][0]][LOBBER[3][1]].getX(), tiles[LOBBER[3][0]][LOBBER[3][1]].getY(), 2, lobberImage4), lobberImage4);
+        tiles[LOBBER[0][0]][LOBBER[0][1]].addTroop(new Lobber((int)tiles[LOBBER[0][0]][LOBBER[0][1]].d.getX(), (int)tiles[LOBBER[0][0]][LOBBER[0][1]].d.getY(), 1, lobberImage1), lobberImage1);
+        tiles[LOBBER[1][0]][LOBBER[1][1]].addTroop(new Lobber((int)tiles[LOBBER[1][0]][LOBBER[1][1]].d.getX(), (int)tiles[LOBBER[1][0]][LOBBER[1][1]].d.getY(), 1, lobberImage2), lobberImage2);
+        tiles[LOBBER[2][0]][LOBBER[2][1]].addTroop(new Lobber((int)tiles[LOBBER[2][0]][LOBBER[2][1]].d.getX(), (int)tiles[LOBBER[2][0]][LOBBER[2][1]].d.getY(), 2, lobberImage3), lobberImage3);
+        tiles[LOBBER[3][0]][LOBBER[3][1]].addTroop(new Lobber((int)tiles[LOBBER[3][0]][LOBBER[3][1]].d.getX(), (int)tiles[LOBBER[3][0]][LOBBER[3][1]].d.getY(), 2, lobberImage4), lobberImage4);
         //put capitans
-        tiles[CAPITAN[0][0]][CAPITAN[0][1]].addTroop(new Capitan(tiles[CAPITAN[0][0]][CAPITAN[0][1]].getX(), tiles[CAPITAN[0][0]][CAPITAN[0][1]].getY(), 1, capitanImage1), capitanImage1);
-        tiles[CAPITAN[1][0]][CAPITAN[1][1]].addTroop(new Capitan(tiles[CAPITAN[1][0]][CAPITAN[1][1]].getX(), tiles[CAPITAN[1][0]][CAPITAN[1][1]].getY(), 2, capitanImage2), capitanImage2);
+        tiles[CAPITAN[0][0]][CAPITAN[0][1]].addTroop(new Capitan((int)tiles[CAPITAN[0][0]][CAPITAN[0][1]].d.getX(), (int)tiles[CAPITAN[0][0]][CAPITAN[0][1]].d.getY(), 1, capitanImage1), capitanImage1);
+        tiles[CAPITAN[1][0]][CAPITAN[1][1]].addTroop(new Capitan((int)tiles[CAPITAN[1][0]][CAPITAN[1][1]].d.getX(), (int)tiles[CAPITAN[1][0]][CAPITAN[1][1]].d.getY(), 2, capitanImage2), capitanImage2);
         //put tanks
-        tiles[TANK[0][0]][TANK[0][1]].addTroop(new Tank(tiles[TANK[0][0]][TANK[0][1]].getX(), tiles[TANK[0][0]][TANK[0][1]].getY(), 1, tankImage1), tankImage1);
-        tiles[TANK[1][0]][TANK[1][1]].addTroop(new Tank(tiles[TANK[1][0]][TANK[1][1]].getX(), tiles[TANK[1][0]][TANK[1][1]].getY(), 2, tankImage2), tankImage2);
+        tiles[TANK[0][0]][TANK[0][1]].addTroop(new Tank((int)tiles[TANK[0][0]][TANK[0][1]].d.getX(), (int)tiles[TANK[0][0]][TANK[0][1]].d.getY(), 1, tankImage1), tankImage1);
+        tiles[TANK[1][0]][TANK[1][1]].addTroop(new Tank((int)tiles[TANK[1][0]][TANK[1][1]].d.getX(), (int)tiles[TANK[1][0]][TANK[1][1]].d.getY(), 2, tankImage2), tankImage2);
 
         revalidate();
         repaint();
@@ -179,10 +179,8 @@ public class Field extends JPanel {
     public void addListener(ActionHandler al){
         back.addActionListener(al);
         back.setActionCommand("BACK");
-
-        // walk.addActionListener(al);
-        // shoot.addActionListener(al);
     }
+    
     public void moveTroop(Point startPoint, Point destinationPoint){
         Troop troop = tiles[(int)startPoint.getY()][(int)startPoint.getX()].troop;
         tiles[(int)destinationPoint.getY()][(int)destinationPoint.getX()].addTroop(troop, troop.image);
