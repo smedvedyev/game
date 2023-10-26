@@ -15,9 +15,22 @@ public abstract class Troop {
         this.image = image;
     }
 
-    public abstract Boolean move(Point d);
+    public Boolean move(Point d){
+        int diffx = Math.abs(d.x - location.x);
+        int diffy = Math.abs(d.y - location.y);
+        if (diffx <= walkRange && diffy <= walkRange) {
+            location.x = (int) d.getX();
+            location.y = (int) d.getY();
+            return true;
+        } else {
+            return false;
+        }
 
-    public abstract void shoot(Point d);
+    }
+
+    public void shoot(Point d){
+
+    }
     
     
     

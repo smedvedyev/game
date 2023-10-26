@@ -55,7 +55,6 @@ public class PopUp extends JFrame implements ActionListener{
             tl.changeState("walk");
             pop.hide();
         } else if (p.getSource().equals(shoot)) {
-            System.out.println("Shoot the jizz and out he is");
             tl.changeState("shoot");
             pop.hide();
         } else {
