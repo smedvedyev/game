@@ -10,6 +10,8 @@ public class TileListener extends MouseAdapter {
     Troop currentTroop;
     Field field;
 
+    EndScreen end;
+
     public TileListener(Field field) {
         state = States.IDLE_P1;
         this.field = field;
@@ -109,7 +111,6 @@ public class TileListener extends MouseAdapter {
                     state = States.IDLE_P1;
                     field.changeInfoLabel("There's no one on this tile!");
                     changeState("popup");
-
                 }
                 break;
 
@@ -161,9 +162,8 @@ public class TileListener extends MouseAdapter {
             case POPUP_P2:
                 Tile newClick2 = (Tile) e.getSource();
                 if (newClick2 != selectedTile) {
-                    System.out.println("very well");
                     popup.hidePop();
-                    state = States.IDLE_P1;
+                    state = States.IDLE_P2;
                 }
                 break;
 
@@ -214,6 +214,7 @@ public class TileListener extends MouseAdapter {
                 changeState("popup");
             }
             break;
+
             case END_OF_THE_GAME:
                 int winner = 0;
                 if (prevState == States.CHECK_ENEMIES_P1 || prevState == States.WALK_P1) {
@@ -221,8 +222,10 @@ public class TileListener extends MouseAdapter {
                 } else {
                     winner = 2;
                 }
+                end = new EndScreen(winner);
                 System.out.println("P" + winner + " wins!!!!");
                 break;
+
             default:
                 break;
         }

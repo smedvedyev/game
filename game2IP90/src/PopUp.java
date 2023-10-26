@@ -16,17 +16,21 @@ public class PopUp extends JFrame implements ActionListener{
     Field field;
     JFrame frame;
 
+    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+    int width = (int) size.getWidth();
+    int height = (int) size.getHeight();
+
     MainFrame mainFrame;
 
     PopUp(Field field, int x, int y, TileListener tl) {
-        this.field = field;
-        frame = field.mf.mainFrame;
+        // this.field = field;
+        // frame = field.mf.mainFrame;
         this.tl = tl;
         JPanel popUpPanel = new JPanel();
         popUpPanel.setBackground(Color.LIGHT_GRAY);
 
-        JLabel popUpLabel = new JLabel();
-        popUpPanel.add(popUpLabel);
+        // JLabel popUpLabel = new JLabel("Choose your action");
+        // popUpPanel.add(popUpLabel);
 
         walk = new JButton("WALK");
         shoot = new JButton("SHOOT");
@@ -37,9 +41,9 @@ public class PopUp extends JFrame implements ActionListener{
         shoot.addActionListener(this);
 
         PopupFactory pf = new PopupFactory();
-        int popx = 100 + (50 * x);
-        int popy = 200 + (50 * y);
-        pop = pf.getPopup(frame, popUpPanel, popx, popy);
+        int popx = (width / 4) + (50 * x);
+        int popy = (height / 5) + (50 * y);
+        pop = pf.getPopup(null, popUpPanel, popx, popy);
 
         pop.show();
     }

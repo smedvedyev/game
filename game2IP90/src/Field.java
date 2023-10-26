@@ -103,6 +103,7 @@ public class Field extends JPanel {
         add(panelForTiles, constraints);
         infoLabel.setForeground(Color.white);
         infoLabel.setText("P1 turn");
+        infoLabel.setFont(new Font("Sans", Font.PLAIN, 40));
         add(infoLabel);
 
         revalidate();
