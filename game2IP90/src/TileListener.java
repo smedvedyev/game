@@ -10,8 +10,6 @@ public class TileListener extends MouseAdapter {
     Troop currentTroop;
     Field field;
 
-    EndScreen end;
-
     public TileListener(Field field) {
         state = States.IDLE_P1;
         this.field = field;
@@ -19,16 +17,31 @@ public class TileListener extends MouseAdapter {
 
     public boolean checkRange(Troop t, Tile destinationTile, String action) {
         boolean res = false;
-        int difference = Math.abs((int) destinationTile.d.getX() - (int) t.location.getX());
+        int differenceX = Math.abs((int) destinationTile.d.getX() - (int) t.location.getX());
+        int differenceY = Math.abs((int) destinationTile.d.getY() - (int) t.location.getY());
         switch (action) {
             case "walk":
-                if (difference <= t.walkRange && difference != 0 && destinationTile.troop == null) {
-                    res = true;
+                if (differenceX <= t.walkRange && differenceX <= t.walkRange) {
+                    //within x and y walking range
+                    if (differenceX != 0 ^ differenceY != 0) {
+                        //both x and y diff aren't 0 (they don't stand still)
+                        if (destinationTile.troop == null) {
+                            //target destination is empty
+                            res = true;
+                        }
+                    }
                 }
                 break;
             case "shoot":
-                if (destinationTile.troop != null && difference <= t.shootRange && difference != 0) {
-                    res = true;
+                if (destinationTile.troop != null) { 
+                    //target is not empty
+                    if (differenceX <= t.shootRange && differenceY <= t.shootRange) { 
+                        //within x and y shooting range
+                        if (differenceX != 0 ^ differenceY != 0) {
+                            //both x and y diff aren't 0 (they don't shoot themselves)
+                            res = true;
+                        }
+                    }
                 }
                 break;
             default:
@@ -176,7 +189,7 @@ public class TileListener extends MouseAdapter {
                     } else {
                         state = States.IDLE_P1;
                     }
-                }else{
+                } else {
                     state = States.IDLE_P2;
                     field.changeInfoLabel("There's no one on this tile!");
                     changeState("popup");
@@ -222,7 +235,8 @@ public class TileListener extends MouseAdapter {
                 } else {
                     winner = 2;
                 }
-                end = new EndScreen(winner);
+                int screenWinner = winner + 2;
+                field.mf.changePanel(screenWinner);
                 System.out.println("P" + winner + " wins!!!!");
                 break;
 

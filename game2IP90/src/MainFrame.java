@@ -9,7 +9,7 @@ public class MainFrame {
     Menu menu = new Menu();
     JPanel activePanel = menu;
 
-
+    EndScreen end;
     Field field = new Field(this);
     
 
@@ -43,6 +43,14 @@ public class MainFrame {
         } else if (n == 2) {
             mainFrame.add(menu);
             activePanel = menu;
+        } else if (n == 3) {
+            end = new EndScreen(this, n);
+            mainFrame.add(end);
+            activePanel = end;
+        } else if (n == 4) {
+            end = new EndScreen(this, n);
+            mainFrame.add(end);
+            activePanel = end;
         } else {
             mainFrame.add(menu);
             activePanel = menu;

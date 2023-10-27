@@ -1,34 +1,58 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class EndScreen extends JFrame {
+public class EndScreen extends JPanel implements ActionListener {
 
-    Popup pop;
+    MainFrame mf;
     JButton close;
+    JPanel endPanel;
+    JLabel winnerText;
 
-    Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-    int width = (int) size.getWidth();
-    int height = (int) size.getHeight();
+    EndScreen(MainFrame mf, int n) {
+        this.mf = mf;
 
-    MainFrame mainFrame;
+        endPanel = new JPanel(); //drawing?
+        endPanel.setPreferredSize(new Dimension(900, 650));
+        endPanel.setVisible(true);
+        endPanel.setBackground(Color.GRAY);
+        endPanel.setLayout(new GridBagLayout());
 
-    EndScreen(int winner) {
-        JPanel endPanel = new JPanel();
-        endPanel.setSize(900, 650);
-        endPanel.setBackground(Color.LIGHT_GRAY);
+        GridBagConstraints grid = new GridBagConstraints();
 
-        JLabel endLabel = new JLabel("Congratulations P" + winner + "!");
-        endPanel.add(endLabel);
+        int winner = n - 2;
+        winnerText = new JLabel();
+        winnerText.setText("Congratualtions P" + winner + "!");
+        winnerText.setFont(new Font("Sans", Font.PLAIN, 60));
 
-        close = new JButton("CLOSE");
-        endPanel.add(close);
+        grid.anchor = GridBagConstraints.PAGE_START;
+        grid.gridx = 2;
+        grid.gridy = 0;
+        grid.weighty = 0.5;
+        endPanel.add(winnerText, grid);
 
-        close.addActionListener((event) -> System.exit(0));
+        close = new JButton("Close");
+        close.setFont(new Font("Sans", Font.BOLD, 30));
+        close.setSize(100, 100);
+        close.addActionListener((event) -> {
+            System.exit(0);
+        });
 
-        PopupFactory pf = new PopupFactory();
-        pop = pf.getPopup(null, endPanel, width / 2, height / 2);
+        grid.anchor = GridBagConstraints.CENTER;
+        grid.gridx = 2;
+        grid.gridy = 1;
+        grid.weighty = 0.5;
+        endPanel.add(close, grid);
 
-        pop.show();
-        }
+        add(endPanel);
+        revalidate();
+        repaint();
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+    }
+}
