@@ -17,6 +17,7 @@ public class ActionHandler implements ActionListener {
             case "CHANGE_TO_FIELD":
                 gm.gameField.changePanel(1);
                 gm.gameField.field.generateTroops();
+                gm.gameField.field.generateObjects();
             break;
 
             case "RULES":

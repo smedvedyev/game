@@ -20,9 +20,30 @@ public class Field extends JPanel {
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
     private static int[][] TANK = { { 2, 0 }, { 6, 16 } };
 
+    private static int[][] ROCKS = { {5, 1}, {11, 1}, {11, 8} };
+    //wall piece that goes from left to right
+    private static int[][] WALL_HOR = { {7, 7}, {8, 7} };
+    //wall piece that goes from top to bottom
+    private static int[][] WALL_VER = { {4, 4}, {7, 0}, {7, 1}, {7, 2}, {9, 6}, {12, 4}};
+    //end of wall that comes from top
+    private static int[][] WALL_N_END = { {4, 5}, {7, 3} }; 
+    //end of wall that comes from bottom
+    private static int[][] WALL_S_END = { {9, 5}, {12, 3} };
+    //end of wall that comes from left
+    private static int[][] WALL_W_END = { {13, 5}};
+    //end of wall that comes from right
+    private static int[][] WALL_E_END = { {3, 3}, {6, 7} };
+    //corner wall from left to top
+    private static int[][] WALL_COR1 = { {9, 7} };
+    //corner wall from right to top
+    private static int[][] WALL_COR2 = { {12, 5} };
+    //corner wall from left to bottom
+    private static int[][] WALL_COR3 = { {4, 3} };
+
     JPanel panelForTiles;
     Tile tiles[][];
     ArrayList<Troop> troops = new ArrayList<Troop>();
+    ArrayList<Object> objects = new ArrayList<Object>();
     ActionListener AL_F;
     MainFrame mf;
     TileListener tl = new TileListener(this);
@@ -51,6 +72,8 @@ public class Field extends JPanel {
 
     JLabel sprinterImage1;
     JLabel sprinterImage2;
+
+    JLabel rockImage;
 
     Field(MainFrame mf) {
         this.mf = mf;
@@ -225,6 +248,29 @@ public class Field extends JPanel {
         tiles[TANK[1][0]][TANK[1][1]].addTroop(t2, t2.image);
         troops.add(t1);
         troops.add(t2);
+
+        revalidate();
+        repaint();
+    }
+
+    public void generateObjects() {
+        java.net.URL imgURLR = getClass().getResource("source/images/Rock.png");
+
+        rockImage = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
+
+        //put rocks
+        Rock rock1 = new Rock((int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getX(),
+                (int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getY(), rockImage);
+        Rock rock2 = new Rock((int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getX(),
+                (int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getY(), rockImage);
+        Rock rock3 = new Rock((int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getX(),
+                (int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getY(), rockImage);
+        tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock1, rock1.image);
+        tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock2, rock2.image);
+        tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock3, rock3.image);
+        objects.add(rock1);
+        objects.add(rock2);
+        objects.add(rock3);
 
         revalidate();
         repaint();

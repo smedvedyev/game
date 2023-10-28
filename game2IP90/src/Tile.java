@@ -8,6 +8,9 @@ public class Tile extends JPanel{
     Troop troop = null;
     public Point d;
     JLabel troopImage;
+    Object object = null;
+    JLabel objectImage;
+
     Tile(int x, int y){
         d = new Point(x,y);
         setPreferredSize(new Dimension(100,100));
@@ -19,7 +22,15 @@ public class Tile extends JPanel{
         add(troopImage);
         repaint();
     }
-    public void removeTroop(){
+
+    public void addObject(Object object, JLabel image) {
+        this.object = object;
+        objectImage = image;
+        add(objectImage);
+        repaint();
+    }
+
+    public void removeTroop() {
         this.troop = null;
         remove(troopImage);
         revalidate();
