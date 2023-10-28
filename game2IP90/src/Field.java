@@ -78,6 +78,33 @@ public class Field extends JPanel {
     JLabel rockImage2;
     JLabel rockImage3;
 
+    JLabel wall1Image1;
+    JLabel wall1Image2;
+
+    JLabel wall2Image1;
+    JLabel wall2Image2;
+    JLabel wall2Image3;
+    JLabel wall2Image4;
+    JLabel wall2Image5;
+    JLabel wall2Image6;
+
+    JLabel wall3Image1;
+    JLabel wall3Image2;
+
+    JLabel wall4Image1;
+    JLabel wall4Image2;
+
+    JLabel wall5Image;
+
+    JLabel wall6Image1;
+    JLabel wall6Image2;
+
+    JLabel wall7Image;
+
+    JLabel wall8Image;
+
+    JLabel wall9Image;
+
     Field(MainFrame mf) {
         this.mf = mf;
         back = new JButton("←");
@@ -259,9 +286,47 @@ public class Field extends JPanel {
     public void generateObjects() {
         java.net.URL imgURLR = getClass().getResource("source/images/rock.png");
 
+        java.net.URL imgURLW1 = getClass().getResource("source/images/wall_H.png");
+        java.net.URL imgURLW2 = getClass().getResource("source/images/wall_V.png");
+        java.net.URL imgURLW3 = getClass().getResource("source/images/wall_N.png");
+        java.net.URL imgURLW4 = getClass().getResource("source/images/wall_S.png");
+        java.net.URL imgURLW5 = getClass().getResource("source/images/wall_W.png");
+        java.net.URL imgURLW6 = getClass().getResource("source/images/wall_E.png");
+        java.net.URL imgURLW7 = getClass().getResource("source/images/wall_W_N.png");
+        java.net.URL imgURLW8 = getClass().getResource("source/images/wall_E_N.png");
+        java.net.URL imgURLW9 = getClass().getResource("source/images/wall_W_S.png");
+
         rockImage1 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
         rockImage2 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
         rockImage3 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
+
+        wall1Image1 = new JLabel("", new ImageIcon(imgURLW1), JLabel.CENTER);
+        wall1Image2 = new JLabel("", new ImageIcon(imgURLW1), JLabel.CENTER);
+        
+        wall2Image1 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
+        wall2Image2 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
+        wall2Image3 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
+        wall2Image4 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
+        wall2Image5 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
+        wall2Image6 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
+
+        wall3Image1 = new JLabel("", new ImageIcon(imgURLW3), JLabel.CENTER);
+        wall3Image2 = new JLabel("", new ImageIcon(imgURLW3), JLabel.CENTER);
+
+        wall4Image1 = new JLabel("", new ImageIcon(imgURLW4), JLabel.CENTER);
+        wall4Image2 = new JLabel("", new ImageIcon(imgURLW4), JLabel.CENTER);
+
+        wall5Image = new JLabel("", new ImageIcon(imgURLW5), JLabel.CENTER);
+
+        wall6Image1 = new JLabel("", new ImageIcon(imgURLW6), JLabel.CENTER);
+        wall6Image2 = new JLabel("", new ImageIcon(imgURLW6), JLabel.CENTER);
+
+        wall7Image = new JLabel("", new ImageIcon(imgURLW7), JLabel.CENTER);
+
+        wall8Image = new JLabel("", new ImageIcon(imgURLW8), JLabel.CENTER);
+
+        wall9Image = new JLabel("", new ImageIcon(imgURLW9), JLabel.CENTER);
+
 
         // put rocks
         Rock rock1 = new Rock((int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getX(),
@@ -276,6 +341,96 @@ public class Field extends JPanel {
         objects.add(rock1);
         objects.add(rock2);
         objects.add(rock3);
+
+        // add HOR walls
+        Wall wallH_1 = new Wall((int) tiles[WALL_HOR[0][0]][WALL_HOR[0][1]].d.getX(),
+                (int) tiles[WALL_HOR[0][0]][WALL_HOR[0][1]].d.getY(), wall1Image1);
+        Wall wallH_2 = new Wall((int) tiles[WALL_HOR[1][0]][WALL_HOR[1][1]].d.getX(),
+                (int) tiles[WALL_HOR[1][0]][WALL_HOR[1][1]].d.getY(), wall1Image2);
+        tiles[WALL_HOR[0][0]][WALL_HOR[0][1]].addObject(wallH_1, wallH_1.image);
+        tiles[WALL_HOR[1][0]][WALL_HOR[1][1]].addObject(wallH_2, wallH_2.image);
+        objects.add(wallH_1);
+        objects.add(wallH_2);
+        
+        // add VER walls
+        Wall wallV_1 = new Wall((int) tiles[WALL_VER[0][0]][WALL_VER[0][1]].d.getX(),
+                (int) tiles[WALL_VER[0][0]][WALL_VER[0][1]].d.getY(), wall2Image1);
+        Wall wallV_2 = new Wall((int) tiles[WALL_VER[1][0]][WALL_VER[1][1]].d.getX(),
+                (int) tiles[WALL_VER[1][0]][WALL_VER[1][1]].d.getY(), wall2Image2);
+        Wall wallV_3 = new Wall((int) tiles[WALL_VER[2][0]][WALL_VER[2][1]].d.getX(),
+                (int) tiles[WALL_VER[2][0]][WALL_VER[2][1]].d.getY(), wall2Image3);
+        Wall wallV_4 = new Wall((int) tiles[WALL_VER[3][0]][WALL_VER[3][1]].d.getX(),
+                (int) tiles[WALL_VER[3][0]][WALL_VER[3][1]].d.getY(), wall2Image4);
+        Wall wallV_5 = new Wall((int) tiles[WALL_VER[4][0]][WALL_VER[4][1]].d.getX(),
+                (int) tiles[WALL_VER[4][0]][WALL_VER[4][1]].d.getY(), wall2Image5);
+        Wall wallV_6 = new Wall((int) tiles[WALL_VER[5][0]][WALL_VER[5][1]].d.getX(),
+                (int) tiles[WALL_VER[5][0]][WALL_VER[5][1]].d.getY(), wall2Image6);
+        tiles[WALL_VER[0][0]][WALL_VER[0][1]].addObject(wallV_1, wallV_1.image);
+        tiles[WALL_VER[1][0]][WALL_VER[1][1]].addObject(wallV_2, wallV_2.image);
+        tiles[WALL_VER[2][0]][WALL_VER[2][1]].addObject(wallV_3, wallV_3.image);
+        tiles[WALL_VER[3][0]][WALL_VER[3][1]].addObject(wallV_4, wallV_4.image);
+        tiles[WALL_VER[4][0]][WALL_VER[4][1]].addObject(wallV_5, wallV_5.image);
+        tiles[WALL_VER[5][0]][WALL_VER[5][1]].addObject(wallV_6, wallV_6.image);
+        objects.add(wallV_1);
+        objects.add(wallV_2);
+        objects.add(wallV_3);
+        objects.add(wallV_4);
+        objects.add(wallV_5);
+        objects.add(wallV_6);
+
+        // add NORTH walls
+        Wall wallN_1 = new Wall((int) tiles[WALL_N_END[0][0]][WALL_N_END[0][1]].d.getX(),
+                (int) tiles[WALL_N_END[0][0]][WALL_N_END[0][1]].d.getY(), wall3Image1);
+        Wall wallN_2 = new Wall((int) tiles[WALL_N_END[1][0]][WALL_N_END[1][1]].d.getX(),
+                (int) tiles[WALL_N_END[1][0]][WALL_N_END[1][1]].d.getY(), wall3Image2);
+        tiles[WALL_N_END[0][0]][WALL_N_END[0][1]].addObject(wallN_1, wallN_1.image);
+        tiles[WALL_N_END[1][0]][WALL_N_END[1][1]].addObject(wallN_2, wallN_2.image);
+        objects.add(wallN_1);
+        objects.add(wallN_2);
+
+        // add SOUTH walls
+        Wall wallS_1 = new Wall((int) tiles[WALL_S_END[0][0]][WALL_S_END[0][1]].d.getX(),
+                (int) tiles[WALL_S_END[0][0]][WALL_S_END[0][1]].d.getY(), wall4Image1);
+        Wall wallS_2 = new Wall((int) tiles[WALL_S_END[1][0]][WALL_S_END[1][1]].d.getX(),
+                (int) tiles[WALL_S_END[1][0]][WALL_S_END[1][1]].d.getY(), wall4Image2);
+        tiles[WALL_S_END[0][0]][WALL_S_END[0][1]].addObject(wallS_1, wallS_1.image);
+        tiles[WALL_S_END[1][0]][WALL_S_END[1][1]].addObject(wallS_2, wallS_2.image);
+        objects.add(wallS_1);
+        objects.add(wallS_2);
+
+        // add WEST walls
+        Wall wallW = new Wall((int) tiles[WALL_W_END[0][0]][WALL_W_END[0][1]].d.getX(),
+                (int) tiles[WALL_W_END[0][0]][WALL_W_END[0][1]].d.getY(), wall5Image);
+        tiles[WALL_W_END[0][0]][WALL_W_END[0][1]].addObject(wallW, wallW.image);
+        objects.add(wallW);
+
+        // add EAST walls
+        Wall wallE_1 = new Wall((int) tiles[WALL_E_END[0][0]][WALL_E_END[0][1]].d.getX(),
+                (int) tiles[WALL_E_END[0][0]][WALL_E_END[0][1]].d.getY(), wall6Image1);
+        Wall wallE_2 = new Wall((int) tiles[WALL_E_END[1][0]][WALL_E_END[1][1]].d.getX(),
+                (int) tiles[WALL_E_END[1][0]][WALL_E_END[1][1]].d.getY(), wall6Image2);
+        tiles[WALL_E_END[0][0]][WALL_E_END[0][1]].addObject(wallE_1, wallE_1.image);
+        tiles[WALL_E_END[1][0]][WALL_E_END[1][1]].addObject(wallE_2, wallE_2.image);
+        objects.add(wallE_1);
+        objects.add(wallE_2);
+
+        // add WEST-NORTH walls
+        Wall wallWN = new Wall((int) tiles[WALL_COR1[0][0]][WALL_COR1[0][1]].d.getX(),
+                (int) tiles[WALL_COR1[0][0]][WALL_COR1[0][1]].d.getY(), wall7Image);
+        tiles[WALL_COR1[0][0]][WALL_COR1[0][1]].addObject(wallWN, wallWN.image);
+        objects.add(wallWN);
+        
+        // add EAST-NORTH walls
+        Wall wallEN = new Wall((int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getX(),
+                (int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getY(), wall8Image);
+        tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].addObject(wallEN, wallEN.image);
+        objects.add(wallEN);
+
+        // add WEST-SOUTH walls
+        Wall wallWS = new Wall((int) tiles[WALL_COR3[0][0]][WALL_COR3[0][1]].d.getX(),
+                (int) tiles[WALL_COR3[0][0]][WALL_COR3[0][1]].d.getY(), wall9Image);
+        tiles[WALL_COR3[0][0]][WALL_COR3[0][1]].addObject(wallWS, wallWS.image);
+        objects.add(wallWS);
 
         revalidate();
         repaint();
