@@ -17,7 +17,7 @@ public class Tile extends JPanel{
         setPreferredSize(new Dimension(100, 100));
     }
     
-    public void addTroop(Troop troop, JLabel image){
+    public void addTroop(Troop troop, JLabel image) {
         this.troop = troop;
         troopImage = image;
         add(troopImage);

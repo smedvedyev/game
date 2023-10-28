@@ -262,7 +262,7 @@ public class Field extends JPanel {
         //put rocks
         Rock rock1 = new Rock((int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getX(),
                 (int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getY(), rockImage);
-        Rock rock2 = new Rock((int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getX(),
+        Rock rock2 = new Rock((int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getX(), 
                 (int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getY(), rockImage);
         Rock rock3 = new Rock((int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getX(),
                 (int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getY(), rockImage);
