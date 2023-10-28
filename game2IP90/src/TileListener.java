@@ -23,8 +23,12 @@ public class TileListener extends MouseAdapter {
             case "walk":
                 if (differenceX <= t.walkRange && differenceY <= t.walkRange) {
                     //within x and y walking range
-                    if (differenceX != 0 ^ differenceY != 0) {
-                        //both x and y diff aren't 0 (they don't stand still)
+                    if (differenceX == differenceY) {
+                        if (destinationTile.troop == null) {
+                            //target destination is empty
+                            res = true;
+                        }
+                    } else if (differenceX != 0 ^ differenceY != 0) {
                         if (destinationTile.troop == null) {
                             //target destination is empty
                             res = true;
