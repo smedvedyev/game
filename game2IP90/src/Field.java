@@ -21,25 +21,25 @@ public class Field extends JPanel {
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
     private static int[][] TANK = { { 2, 0 }, { 6, 16 } };
 
-    private static int[][] ROCKS = { {1, 5}, {1, 11}, {8, 11} };
-    //wall piece that goes from left to right
-    private static int[][] WALL_HOR = { {7, 7}, {7, 8} };
-    //wall piece that goes from top to bottom
-    private static int[][] WALL_VER = { {4, 4}, {0, 7}, {1, 7}, {2, 7}, {6, 9}, {4, 12}};
-    //end of wall that comes from top
-    private static int[][] WALL_N_END = { {5, 4}, {3, 7} }; 
-    //end of wall that comes from bottom
-    private static int[][] WALL_S_END = { {5, 9}, {3, 12} };
-    //end of wall that comes from left
-    private static int[][] WALL_W_END = { {5, 13} };
-    //end of wall that comes from right
-    private static int[][] WALL_E_END = { {3, 3}, {7, 6} };
-    //corner wall from left to top
-    private static int[][] WALL_COR1 = { {7, 9} };
-    //corner wall from right to top
-    private static int[][] WALL_COR2 = { {5, 12} };
-    //corner wall from left to bottom
-    private static int[][] WALL_COR3 = { {3, 4} };
+    private static int[][] ROCKS = { { 1, 5 }, { 1, 11 }, { 8, 11 } };
+    // wall piece that goes from left to right
+    private static int[][] WALL_HOR = { { 7, 7 }, { 7, 8 } };
+    // wall piece that goes from top to bottom
+    private static int[][] WALL_VER = { { 4, 4 }, { 0, 7 }, { 1, 7 }, { 2, 7 }, { 6, 9 }, { 4, 12 } };
+    // end of wall that comes from top
+    private static int[][] WALL_N_END = { { 5, 4 }, { 3, 7 } };
+    // end of wall that comes from bottom
+    private static int[][] WALL_S_END = { { 5, 9 }, { 3, 12 } };
+    // end of wall that comes from left
+    private static int[][] WALL_W_END = { { 5, 13 } };
+    // end of wall that comes from right
+    private static int[][] WALL_E_END = { { 3, 3 }, { 7, 6 } };
+    // corner wall from left to top
+    private static int[][] WALL_COR1 = { { 7, 9 } };
+    // corner wall from right to top
+    private static int[][] WALL_COR2 = { { 5, 12 } };
+    // corner wall from left to bottom
+    private static int[][] WALL_COR3 = { { 3, 4 } };
 
     JPanel panelForTiles;
     Tile tiles[][];
@@ -50,7 +50,7 @@ public class Field extends JPanel {
     TileListener tl = new TileListener(this);
     JButton back;
 
-    JLabel infoLabel = new JLabel("kur");
+    JLabel infoLabel = new JLabel("");
     Popup pop;
     JButton walk;
     JButton shoot;
@@ -245,7 +245,7 @@ public class Field extends JPanel {
         // put tanks
         Tank t1 = new Tank((int) tiles[TANK[0][0]][TANK[0][1]].d.getX(), (int) tiles[TANK[0][0]][TANK[0][1]].d.getY(),
                 1, tankImage1);
-        Tank t2 = new Tank((int) tiles[TANK[1][0]][TANK[1][1]].d.getX(), 
+        Tank t2 = new Tank((int) tiles[TANK[1][0]][TANK[1][1]].d.getX(),
                 (int) tiles[TANK[1][0]][TANK[1][1]].d.getY(), 2, tankImage2);
         tiles[TANK[0][0]][TANK[0][1]].addTroop(t1, t1.image);
         tiles[TANK[1][0]][TANK[1][1]].addTroop(t2, t2.image);
@@ -263,10 +263,10 @@ public class Field extends JPanel {
         rockImage2 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
         rockImage3 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
 
-        //put rocks
+        // put rocks
         Rock rock1 = new Rock((int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getX(),
                 (int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getY(), rockImage1);
-        Rock rock2 = new Rock((int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getX(), 
+        Rock rock2 = new Rock((int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getX(),
                 (int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getY(), rockImage2);
         Rock rock3 = new Rock((int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getX(),
                 (int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getY(), rockImage3);
@@ -302,6 +302,7 @@ public class Field extends JPanel {
         troops.remove(troopToElim);
         revalidate();
         repaint();
+        // check enemy troops left
         if (troopToElim.player == 1) {
             for (Troop t : troops) {
                 if (t.player == 2) {
@@ -315,6 +316,75 @@ public class Field extends JPanel {
                 }
             }
 
+        }
+        return true;
+    }
+
+    public boolean checkObstacle(Point troopLoc, Point destinationLoc, int diffX, int diffY) {
+        int trace[][];
+        if (diffX != 0 && diffY == 0) {
+            trace = new int[Math.abs(diffX) - 1][Math.abs(diffX) - 1];
+            if (diffX < 0) {
+                for (int i = -1, k = 0; i > diffX; i--, k++) {
+                    trace[k][0] = i + (int) troopLoc.getX();
+                    trace[k][1] = (int) troopLoc.getY();
+                }
+
+            } else {
+                for (int i = 1, k = 0; i < diffX; i++, k++) {
+                    trace[k][0] = i + (int) troopLoc.getX();
+                    trace[k][1] = (int) troopLoc.getY();
+                }
+            }
+        } else if (diffX == 0 && diffY != 0) {
+            trace = new int[Math.abs(diffY) - 1][Math.abs(diffY) - 1];
+            if (diffY < 0) {
+                for (int i = -1, k = 0; i > diffY; i--, k++) {
+                    trace[k][0] = (int) troopLoc.getX();
+                    trace[k][1] = i + (int) troopLoc.getY();
+                }
+
+            } else {
+                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                    trace[k][0] = (int) troopLoc.getX();
+                    trace[k][1] = i + (int) troopLoc.getY();
+                }
+            }
+        } else {
+            trace = new int[Math.abs(diffY) - 1][Math.abs(diffY) - 1];
+            if (diffX < 0 && diffY < 0) {
+                for (int i = 1, k = 0; i < Math.abs(diffY); i++, k++) {
+                    trace[k][0] = (int) troopLoc.getX() - i;
+                    trace[k][1] = (int) troopLoc.getY() - i;
+                }
+            } else if (diffX < 0 && diffY > 0) {
+                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                    trace[k][0] = (int) troopLoc.getX() - i;
+                    trace[k][1] = i + (int) troopLoc.getY();
+                }
+            } else if (diffX > 0 && diffY < 0) {
+                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                    trace[k][0] = (int) troopLoc.getX() + i;
+                    trace[k][1] = (int) troopLoc.getY() - i;
+                }
+            } else if (diffX > 0 && diffY > 0) {
+                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                    trace[k][0] = (int) troopLoc.getX() + i;
+                    trace[k][1] = (int) troopLoc.getY() + i;
+                }
+            }
+
+        }
+
+        return trace(trace);
+    }
+
+    public boolean trace(int[][] trace) {
+        for(int i=0; i<trace.length;i++){
+            // ||tiles[trace[i][0]][trace[i][1]].troop!=null
+            if(tiles[trace[i][0]][trace[i][1]].object!=null){
+                return false;
+            }
         }
         return true;
     }

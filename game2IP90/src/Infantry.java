@@ -10,9 +10,6 @@ public class Infantry extends Troop {
     }
 
     @Override
-    public void shoot(Point d) {
-    }
-    @Override
     public String toString(){
         return "Infantry "+player;
     }

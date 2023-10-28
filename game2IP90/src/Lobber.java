@@ -13,10 +13,10 @@ public class Lobber extends Troop {
 
 
     @Override
-    public void shoot(Point d) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Shoot'");
+    public boolean shoot(int differenceX, int differenceY) {
+        return ((differenceX == 3 && differenceY == 0)||(differenceY == 0 && differenceY == 3)||(differenceY == 3 && differenceY == 3));
     }
+
     @Override
     public String toString(){
         return "Lobber "+player;

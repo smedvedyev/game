@@ -13,11 +13,6 @@ public class Sprinter extends Troop{
 
 
     @Override
-    public void shoot(Point d) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Shoot'");
-    }
-    @Override
     public String toString(){
         return "Sprinter "+player;
     }

@@ -17,32 +17,34 @@ public class TileListener extends MouseAdapter {
 
     public boolean checkRange(Troop t, Tile destinationTile, String action) {
         boolean res = false;
-        int differenceX = Math.abs((int) destinationTile.d.getX() - (int) t.location.getX());
-        int differenceY = Math.abs((int) destinationTile.d.getY() - (int) t.location.getY());
+        int differenceX = (int) destinationTile.d.getX() - (int) t.location.getX();
+        int differenceY = (int) destinationTile.d.getY() - (int) t.location.getY();
         switch (action) {
             case "walk":
-                if (differenceX <= t.walkRange && differenceY <= t.walkRange) {
-                    //within x and y walking range
-                    if (differenceX == differenceY) {
+                if (Math.abs(differenceX) <= t.walkRange && Math.abs(differenceY) <= t.walkRange) {
+                    // within x and y walking range
+                    if (Math.abs(differenceX) == Math.abs(differenceY)) {
                         if (destinationTile.troop == null) {
-                            //target destination is empty
+                            // target destination is empty
                             res = true;
                         }
-                    } else if (differenceX != 0 ^ differenceY != 0) {
+                    } else if (Math.abs(differenceX) != 0 ^ Math.abs(differenceY) != 0) {
                         if (destinationTile.troop == null) {
-                            //target destination is empty
+                            // target destination is empty
                             res = true;
                         }
                     }
                 }
                 break;
             case "shoot":
-                if (destinationTile.troop != null) { 
-                    //target is not empty
-                    if (differenceX <= t.shootRange && differenceY <= t.shootRange) { 
-                        //within x and y shooting range
-                        if (differenceX != 0 ^ differenceY != 0) {
-                            //both x and y diff aren't 0 (they don't shoot themselves)
+                if (destinationTile.troop != null) {
+                    // target is not empty
+                    if (t.shoot(Math.abs(differenceX), Math.abs(differenceY))) {
+                        if (Math.abs(differenceX) > 1 && Math.abs(differenceY) > 1) {
+                            if (field.checkObstacle(t.location, destinationTile.d, differenceX, differenceY)) {
+                                res = true;
+                            }
+                        }else{
                             res = true;
                         }
                     }
@@ -52,6 +54,7 @@ public class TileListener extends MouseAdapter {
                 break;
         }
         return res;
+
     }
 
     public void changeState(String action) {
@@ -116,15 +119,15 @@ public class TileListener extends MouseAdapter {
 
             case SHOOT_P1:
                 actionTile = (Tile) e.getSource();
-                System.out.println("here");
                 if (checkRange(currentTroop, actionTile, "shoot")) {
                     if (field.eliminateTroop(actionTile.d)) {
                         prevState = state;
                         state = States.END_OF_THE_GAME;
                     } else {
-                        state = States.IDLE_P1;
+                        field.changeInfoLabel("Turn P2");
+                        state = States.IDLE_P2;
                     }
-                }else{
+                } else {
                     state = States.IDLE_P1;
                     field.changeInfoLabel("There's no one on this tile!");
                     changeState("popup");
@@ -138,9 +141,8 @@ public class TileListener extends MouseAdapter {
                 if (checkRange(currentTroop, actionTile, "walk")) {
                     currentTroop.move(actionTile.d);
                     field.moveTroop(selectedTile.d, actionTile.d);
-                    Boolean res = false;
+                    boolean res = false;
                     for (int i = 0; i < 17; i++) {
-                        System.out.println(i);
                         if (currentTroop.location.getX() == 16 && currentTroop.location.getY() == i) {
                             res = true;
                         }
@@ -191,46 +193,48 @@ public class TileListener extends MouseAdapter {
                         prevState = state;
                         state = States.END_OF_THE_GAME;
                     } else {
+                        field.changeInfoLabel("Turn P1");
+
                         state = States.IDLE_P1;
                     }
                 } else {
                     state = States.IDLE_P2;
-                    field.changeInfoLabel("There's no one on this tile!");
+                    field.changeInfoLabel("Missed, try again");
                     changeState("popup");
 
                 }
                 break;
 
             case WALK_P2:
-            actionTile = (Tile) e.getSource();
-            // if(checkRange(currentTroop, actionTile, "walk")){
+                actionTile = (Tile) e.getSource();
+                // if(checkRange(currentTroop, actionTile, "walk")){
 
-            if (checkRange(currentTroop, actionTile, "walk")) {
-                currentTroop.move(actionTile.d);
-                field.moveTroop(selectedTile.d, actionTile.d);
-                Boolean res = false;
-                for (int i = 0; i < 17; i++) {
-                    System.out.println(i);
-                    if (currentTroop.location.getX() == 0 && currentTroop.location.getY() == i) {
-                        res = true;
+                if (checkRange(currentTroop, actionTile, "walk")) {
+                    currentTroop.move(actionTile.d);
+                    field.moveTroop(selectedTile.d, actionTile.d);
+                    boolean res = false;
+                    for (int i = 0; i < 17; i++) {
+                        System.out.println(i);
+                        if (currentTroop.location.getX() == 0 && currentTroop.location.getY() == i) {
+                            res = true;
+                        }
                     }
-                }
-                if (res) {
-                    prevState = States.WALK_P2;
-                    state = States.END_OF_THE_GAME;
-                    mouseClicked(e);
+                    if (res) {
+                        prevState = States.WALK_P2;
+                        state = States.END_OF_THE_GAME;
+                        mouseClicked(e);
+                    } else {
+                        field.changeInfoLabel("Turn P1");
+                        state = States.IDLE_P1;
+
+                    }
                 } else {
-                    field.changeInfoLabel("Turn P1");
-                    state = States.IDLE_P1;
+                    state = States.IDLE_P2;
+                    field.changeInfoLabel("Out of range!");
 
+                    changeState("popup");
                 }
-            } else {
-                state = States.IDLE_P2;
-                field.changeInfoLabel("Out of range!");
-
-                changeState("popup");
-            }
-            break;
+                break;
 
             case END_OF_THE_GAME:
                 int winner = 0;

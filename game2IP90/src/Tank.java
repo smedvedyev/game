@@ -10,11 +10,6 @@ public class Tank extends Troop {
 
 
     @Override
-    public void shoot(Point d) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Shoot'");
-    }
-    @Override
     public String toString(){
         return "Tank "+player;
     }
