@@ -21,7 +21,7 @@ public class Field extends JPanel {
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
     private static int[][] TANK = { { 2, 0 }, { 6, 16 } };
 
-    private static int[][] ROCKS = { {1, 5}, {1, 11}, {8, 1} };
+    private static int[][] ROCKS = { {1, 5}, {1, 11}, {8, 11} };
     //wall piece that goes from left to right
     private static int[][] WALL_HOR = { {7, 7}, {7, 8} };
     //wall piece that goes from top to bottom
@@ -74,7 +74,9 @@ public class Field extends JPanel {
     JLabel sprinterImage1;
     JLabel sprinterImage2;
 
-    JLabel rockImage;
+    JLabel rockImage1;
+    JLabel rockImage2;
+    JLabel rockImage3;
 
     Field(MainFrame mf) {
         this.mf = mf;
@@ -257,15 +259,17 @@ public class Field extends JPanel {
     public void generateObjects() {
         java.net.URL imgURLR = getClass().getResource("source/images/rock.png");
 
-        rockImage = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
+        rockImage1 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
+        rockImage2 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
+        rockImage3 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
 
         //put rocks
         Rock rock1 = new Rock((int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getX(),
-                (int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getY(), rockImage);
+                (int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getY(), rockImage1);
         Rock rock2 = new Rock((int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getX(), 
-                (int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getY(), rockImage);
+                (int) tiles[ROCKS[1][0]][ROCKS[1][1]].d.getY(), rockImage2);
         Rock rock3 = new Rock((int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getX(),
-                (int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getY(), rockImage);
+                (int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getY(), rockImage3);
         tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock1, rock1.image);
         tiles[ROCKS[1][0]][ROCKS[1][1]].addObject(rock2, rock2.image);
         tiles[ROCKS[2][0]][ROCKS[2][1]].addObject(rock3, rock3.image);
