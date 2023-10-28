@@ -21,7 +21,7 @@ public class TileListener extends MouseAdapter {
         int differenceY = Math.abs((int) destinationTile.d.getY() - (int) t.location.getY());
         switch (action) {
             case "walk":
-                if (differenceX <= t.walkRange && differenceX <= t.walkRange) {
+                if (differenceX <= t.walkRange && differenceY <= t.walkRange) {
                     //within x and y walking range
                     if (differenceX != 0 ^ differenceY != 0) {
                         //both x and y diff aren't 0 (they don't stand still)
