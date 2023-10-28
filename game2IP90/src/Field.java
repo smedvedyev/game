@@ -13,6 +13,7 @@ public class Field extends JPanel {
     private static final int FIELD_WIDTH = 9;
     private static final int FIELD_LENGTH = 17;
 
+    // { y , x} //
     // 1 cap,2 lob,2 inf, 1 sprinter, 1 tank
     private static int[][] INFANTRY = { { 0, 1 }, { 8, 1 }, { 0, 15 }, { 8, 15 } };
     private static int[][] SPRINTER = { { 6, 0 }, { 2, 16 } };
@@ -20,25 +21,25 @@ public class Field extends JPanel {
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
     private static int[][] TANK = { { 2, 0 }, { 6, 16 } };
 
-    private static int[][] ROCKS = { {5, 1}, {11, 1}, {11, 8} };
+    private static int[][] ROCKS = { {1, 5}, {1, 11}, {8, 1} };
     //wall piece that goes from left to right
-    private static int[][] WALL_HOR = { {7, 7}, {8, 7} };
+    private static int[][] WALL_HOR = { {7, 7}, {7, 8} };
     //wall piece that goes from top to bottom
-    private static int[][] WALL_VER = { {4, 4}, {7, 0}, {7, 1}, {7, 2}, {9, 6}, {12, 4}};
+    private static int[][] WALL_VER = { {4, 4}, {0, 7}, {1, 7}, {2, 7}, {6, 9}, {4, 12}};
     //end of wall that comes from top
-    private static int[][] WALL_N_END = { {4, 5}, {7, 3} }; 
+    private static int[][] WALL_N_END = { {5, 4}, {3, 7} }; 
     //end of wall that comes from bottom
-    private static int[][] WALL_S_END = { {9, 5}, {12, 3} };
+    private static int[][] WALL_S_END = { {5, 9}, {3, 12} };
     //end of wall that comes from left
-    private static int[][] WALL_W_END = { {13, 5}};
+    private static int[][] WALL_W_END = { {5, 13} };
     //end of wall that comes from right
-    private static int[][] WALL_E_END = { {3, 3}, {6, 7} };
+    private static int[][] WALL_E_END = { {3, 3}, {7, 6} };
     //corner wall from left to top
-    private static int[][] WALL_COR1 = { {9, 7} };
+    private static int[][] WALL_COR1 = { {7, 9} };
     //corner wall from right to top
-    private static int[][] WALL_COR2 = { {12, 5} };
+    private static int[][] WALL_COR2 = { {5, 12} };
     //corner wall from left to bottom
-    private static int[][] WALL_COR3 = { {4, 3} };
+    private static int[][] WALL_COR3 = { {3, 4} };
 
     JPanel panelForTiles;
     Tile tiles[][];
@@ -242,8 +243,8 @@ public class Field extends JPanel {
         // put tanks
         Tank t1 = new Tank((int) tiles[TANK[0][0]][TANK[0][1]].d.getX(), (int) tiles[TANK[0][0]][TANK[0][1]].d.getY(),
                 1, tankImage1);
-        Tank t2 = new Tank((int) tiles[TANK[1][0]][TANK[1][1]].d.getX(), (int) tiles[TANK[1][0]][TANK[1][1]].d.getY(),
-                2, tankImage2);
+        Tank t2 = new Tank((int) tiles[TANK[1][0]][TANK[1][1]].d.getX(), 
+                (int) tiles[TANK[1][0]][TANK[1][1]].d.getY(), 2, tankImage2);
         tiles[TANK[0][0]][TANK[0][1]].addTroop(t1, t1.image);
         tiles[TANK[1][0]][TANK[1][1]].addTroop(t2, t2.image);
         troops.add(t1);
@@ -254,7 +255,7 @@ public class Field extends JPanel {
     }
 
     public void generateObjects() {
-        java.net.URL imgURLR = getClass().getResource("source/images/Rock.png");
+        java.net.URL imgURLR = getClass().getResource("source/images/rock.png");
 
         rockImage = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
 
@@ -266,8 +267,8 @@ public class Field extends JPanel {
         Rock rock3 = new Rock((int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getX(),
                 (int) tiles[ROCKS[2][0]][ROCKS[2][1]].d.getY(), rockImage);
         tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock1, rock1.image);
-        tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock2, rock2.image);
-        tiles[ROCKS[0][0]][ROCKS[0][1]].addObject(rock3, rock3.image);
+        tiles[ROCKS[1][0]][ROCKS[1][1]].addObject(rock2, rock2.image);
+        tiles[ROCKS[2][0]][ROCKS[2][1]].addObject(rock3, rock3.image);
         objects.add(rock1);
         objects.add(rock2);
         objects.add(rock3);
