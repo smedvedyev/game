@@ -13,7 +13,8 @@ public class Rules extends JFrame implements ActionListener {
 
     JLabel label1;
     JLabel label2;
-    JButton button;
+    JButton button1;
+    JButton button2;
 
     Game gm;
 
@@ -36,15 +37,28 @@ public class Rules extends JFrame implements ActionListener {
         label2.setBounds(0,0,390,770);
         label2.setVisible(false);
 
-        button = new JButton("");
-        button.setSize(130, 25);
-        button.setBounds(90, 590, 130, 25);
-        button.setOpaque(false);
-        button.addActionListener(this);
+        button1 = new JButton("");
+        button1.setSize(130, 25);
+        button1.setBounds(90, 590, 130, 25);
+        button1.setOpaque(false);
+        button1.addActionListener(this);
+        button1.setVisible(true);
+
+        button2 = new JButton("←");
+        button2.setPreferredSize(new Dimension(70, 40));
+        button2.setBounds(90, 590, 130, 25);
+        button2.setPreferredSize(new Dimension(70, 40));
+        button2.setFont(new Font("Sans", Font.BOLD, 35));
+        button2.setForeground(Color.BLACK);
+        button2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        button2.setBackground(new Color(73, 132, 103));
+        button2.addActionListener(this);
+        button2.setVisible(false);
 
         add(label1);
-        add(button);
+        add(button1);
         add(label2);
+        add(button2);
 
         revalidate();
         repaint();
@@ -57,9 +71,18 @@ public class Rules extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        label2.setVisible(true);
-        label1.setVisible(false);
-        button.setVisible(false);
+        if (e.getSource() == button1) {
+            label2.setVisible(true);
+            button2.setVisible(true);
+            label1.setVisible(false);
+            button1.setVisible(false);
+        } else {
+            label2.setVisible(false);
+            button2.setVisible(false);
+            label1.setVisible(true);
+            button1.setVisible(true);
+        }
+        
     }
 
 }
