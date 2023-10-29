@@ -14,7 +14,7 @@ public class Field extends JPanel {
     // { y , x} //
     // 1 cap,2 lob,2 inf, 1 sprinter, 1 tank
     private static int[][] INFANTRY = { { 0, 1 }, { 2, 0 }, { 8, 1 }, { 0, 15 }, { 6, 16 }, { 8, 15 } };
-    private static int[][] SPRINTER = { { 6, 0 }, { 2, 16 } }; 
+    private static int[][] SPRINTER = {{ 6, 0 }, { 2, 16 } }; 
     private static int[][] LOBBER = { { 3, 1 }, { 5, 1 }, { 3, 15 }, { 5, 15 } };
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
 

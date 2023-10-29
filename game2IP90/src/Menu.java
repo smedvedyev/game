@@ -14,12 +14,12 @@ public class Menu extends JPanel{
     Menu() {
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new GridBagLayout());
-        setBackground(new Color(89,41,65));
+        setBackground(new Color(145, 196, 153));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
-        Label gameName = new Label("Boom beach");
-        gameName.setFont(new Font("Arial", Font.PLAIN, 100));
+        Label gameName = new Label("KNIGHT'S VALOR");
+        gameName.setFont(new Font("Helvetica", Font.PLAIN, 80));
         gameName.setForeground(Color.white);
         add(gameName, gbc);
 
@@ -27,7 +27,7 @@ public class Menu extends JPanel{
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JPanel buttons = new JPanel(new GridBagLayout());
-        buttons.setBackground(new Color(89,41,65));
+        buttons.setOpaque(false);
         playButton = new JButton("PLAY");
         playButton.setPreferredSize(new Dimension(150, 50));
         playButton.setFocusPainted(false);
