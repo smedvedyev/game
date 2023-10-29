@@ -15,10 +15,7 @@ public class ActionHandler implements ActionListener {
         String action = e.getActionCommand();
         switch (action) {
             case "CHANGE_TO_FIELD":
-                gm.gameField.changePanel(1);
-                gm.gameField.field.generateTroops();
-                gm.gameField.field.generateObjects();
-                
+                gm.gameField.changePanel(1);                
             break;
 
             case "RULES":

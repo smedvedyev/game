@@ -11,9 +11,8 @@ public class MainFrame {
 
     EndScreen end;
     Field field = new Field(this);
-    
 
-    MainFrame(Game gm){
+    MainFrame(Game gm) {
         this.gm = gm;
         mainFrame = new JFrame("Game");
         mainFrame.setSize(900, 650);
@@ -24,24 +23,25 @@ public class MainFrame {
         mainFrame.setResizable(false);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.addListener(gm.cl);
+        field.generateField();
+        field.generateObjects();
+        field.generateTroops();
         field.addListener(gm.cl);
         mainFrame.add(menu);
-        // changePanel();
         mainFrame.revalidate();
         mainFrame.pack();
         mainFrame.setVisible(true);
-
 
     }
 
     /**
      * Change between main panels
+     * 
      * @param n index of the panel
      */
     public void changePanel(int n) {
         mainFrame.remove(activePanel);
         if (n == 1) {
-            field.generateField();
             mainFrame.add(field);
             activePanel = field;
         } else if (n == 2) {
@@ -63,6 +63,5 @@ public class MainFrame {
         mainFrame.repaint();
         mainFrame.pack();
     }
-
 
 }
