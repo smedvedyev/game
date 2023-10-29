@@ -517,6 +517,7 @@ public class Field extends JPanel {
                 }
             }
         } else if (diffX == 0 && diffY != 0) {
+
             trace = new int[Math.abs(diffY) - 1][2];
             if (diffY < 0) {
                 for (int i = -1, k = 0; i > diffY; i--, k++) {
@@ -531,6 +532,7 @@ public class Field extends JPanel {
                 }
             }
         } else {
+
             trace = new int[Math.abs(diffY) - 1][2];
             if (diffX < 0 && diffY < 0) {
                 for (int i = 1, k = 0; i < Math.abs(diffY); i++, k++) {
@@ -538,17 +540,17 @@ public class Field extends JPanel {
                     trace[k][1] = (int) troopLoc.getY() - i;
                 }
             } else if (diffX < 0 && diffY > 0) {
-                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                for (int i = 1, k = 0; i < Math.abs(diffY); i++, k++) {
                     trace[k][0] = (int) troopLoc.getX() - i;
                     trace[k][1] = i + (int) troopLoc.getY();
                 }
             } else if (diffX > 0 && diffY < 0) {
-                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                for (int i = 1, k = 0; i < Math.abs(diffY); i++, k++) {
                     trace[k][0] = (int) troopLoc.getX() + i;
                     trace[k][1] = (int) troopLoc.getY() - i;
                 }
             } else if (diffX > 0 && diffY > 0) {
-                for (int i = 1, k = 0; i < diffY; i++, k++) {
+                for (int i = 1, k = 0; i < Math.abs(diffY); i++, k++) {
                     trace[k][0] = (int) troopLoc.getX() + i;
                     trace[k][1] = (int) troopLoc.getY() + i;
                 }
