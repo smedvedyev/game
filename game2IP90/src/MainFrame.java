@@ -34,6 +34,10 @@ public class MainFrame {
 
     }
 
+    /**
+     * Change between main panels
+     * @param n index of the panel
+     */
     public void changePanel(int n) {
         mainFrame.remove(activePanel);
         if (n == 1) {

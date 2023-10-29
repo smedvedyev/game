@@ -9,7 +9,7 @@ public class ActionHandler implements ActionListener {
     ActionHandler(Game gm){
         this.gm = gm;
     }
-
+    /** Action handler used to switch the panels */
     @Override
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
@@ -23,7 +23,6 @@ public class ActionHandler implements ActionListener {
 
             case "RULES":
                 rules = new Rules(gm);
-                System.out.println("eeee");
             break;
 
             case "BACK":

@@ -1,10 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-
 import java.util.ArrayList;
-
-import javax.print.StreamPrintServiceFactory;
 import javax.swing.*;
 
 /**
@@ -18,7 +14,7 @@ public class Field extends JPanel {
     // { y , x} //
     // 1 cap,2 lob,2 inf, 1 sprinter, 1 tank
     private static int[][] INFANTRY = { { 0, 1 }, { 2, 0 }, { 8, 1 }, { 0, 15 }, { 6, 16 }, { 8, 15 } };
-    private static int[][] SPRINTER = { { 3, 11 }, { 2, 16 } }; // { { 6, 0 }, { 2, 16 } };
+    private static int[][] SPRINTER = { { 6, 0 }, { 2, 16 } }; 
     private static int[][] LOBBER = { { 3, 1 }, { 5, 1 }, { 3, 15 }, { 5, 15 } };
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
 
@@ -110,7 +106,9 @@ public class Field extends JPanel {
         back = new JButton("←");
 
     }
-
+    /**
+     * generating a field
+     */
     public void generateField() {
         new JPanel();
         setBackground(Color.DARK_GRAY);
@@ -187,7 +185,9 @@ public class Field extends JPanel {
         add(back, constraints);
 
     }
-
+    /**
+     * putting the troops on the field on predetermined tiles
+     */
     public void generateTroops() {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
@@ -286,7 +286,9 @@ public class Field extends JPanel {
         revalidate();
         repaint();
     }
-
+    /**
+     * putting the objects like walls and rocks in the field on predtermined tiles
+     */
     public void generateObjects() {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         java.net.URL imgURLR = classLoader.getResource("source/images/rock.png");
@@ -439,12 +441,19 @@ public class Field extends JPanel {
         revalidate();
         repaint();
     }
-
+    /**
+     * Adding the listener to the button
+     * @param al action listener to switch between main panels
+     */
     public void addListener(ActionHandler al) {
         back.addActionListener(al);
         back.setActionCommand("BACK");
     }
-
+    /**
+     * Explicitly moving a troop on field
+     * @param startPoint the tile where the troop was
+     * @param destinationPoint the tile where the troop needs to be moved to
+     */
     public void moveTroop(Point startPoint, Point destinationPoint) {
         Troop troop = tiles[(int) startPoint.getY()][(int) startPoint.getX()].troop;
         tiles[(int) destinationPoint.getY()][(int) destinationPoint.getX()].addTroop(troop, troop.image);
@@ -453,10 +462,13 @@ public class Field extends JPanel {
         repaint();
 
     }
-
+    /**
+     * Eliminating the troop 
+     * @param coords the coordinates of the troop, which needs to be eliminated
+     * @return true if no more troops of the opposing team left
+     */
     public boolean eliminateTroop(Point coords) {
         Troop troopToElim = tiles[(int) coords.getY()][(int) coords.getX()].troop;
-        System.out.println(troopToElim.toString());
         tiles[(int) coords.getY()][(int) coords.getX()].removeTroop();
         troops.remove(troopToElim);
         revalidate();
@@ -464,13 +476,13 @@ public class Field extends JPanel {
         // check enemy troops left
         if (troopToElim.player == 1) {
             for (Troop t : troops) {
-                if (t.player == 2) {
+                if (t.player == 1) {
                     return false;
                 }
             }
         } else {
             for (Troop t : troops) {
-                if (t.player == 1) {
+                if (t.player == 2) {
                     return false;
                 }
             }
@@ -479,6 +491,15 @@ public class Field extends JPanel {
         return true;
     }
 
+    /**
+     * checking for an obstacle on the way from one tile to another
+     * @param troopLoc troop location
+     * @param destinationLoc 
+     * @param diffX X difference of the locations
+     * @param diffY Y difference of the locations
+     * @return true if no obstacles are on the way
+     * @throws ObstacleException thrown if the obstacle was found
+     */
     public boolean checkObstacle(Point troopLoc, Point destinationLoc, int diffX, int diffY) throws ObstacleException {
         int trace[][];
         if (diffX != 0 && diffY == 0) {
@@ -540,7 +561,12 @@ public class Field extends JPanel {
             throw oe;
         }
     }
-
+    /**
+     * Checking all the tiles in trace array for having an object 
+     * @param trace array of the corrdinates of the tiles from troop to action tile
+     * @return true if no objects found
+     * @throws ObstacleException thrown if there is an object
+     */
     public boolean trace(int[][] trace) throws ObstacleException {
 
         for (int i = 0; i < trace.length; i++) {
@@ -553,6 +579,10 @@ public class Field extends JPanel {
 
     }
 
+    /**
+     * Changing the general game string which helps players to follow the game
+     * @param text the texted to be input
+     */
     public void changeInfoLabel(String text) {
         infoLabel.setText(text);
         repaint();

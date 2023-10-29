@@ -15,6 +15,13 @@ public class TileListener extends MouseAdapter {
         this.field = field;
     }
 
+    /**
+     * Checking the range of the specific troop
+     * @param t troop chosen
+     * @param destinationTile the tile which player chose to walk or shoot to
+     * @param action walk or shoot
+     * @return true if the action is possible with all the constraints checked
+     */
     public boolean checkRange(Troop t, Tile destinationTile, String action) {
         boolean res = false;
         int differenceX = (int) destinationTile.d.getX() - (int) t.location.getX();
@@ -55,9 +62,7 @@ public class TileListener extends MouseAdapter {
                 if (destinationTile.troop != null) {
                     // target is not empty
                     if (t.shoot(Math.abs(differenceX), Math.abs(differenceY))) {
-                        System.out.println(differenceX + ", " + differenceY);
                         if ((Math.abs(differenceX) > 1 || Math.abs(differenceY) > 1) && !(t instanceof Lobber)) {
-                            System.out.println("diff");
                             try {
                                 field.checkObstacle(t.location, destinationTile.d, differenceX, differenceY);
                                 res = true;
@@ -79,6 +84,10 @@ public class TileListener extends MouseAdapter {
 
     }
 
+    /**
+     * Changing the flow of the game
+     * @param action the name of 3 different groups of states
+     */
     public void changeState(String action) {
         switch (action) {
             case "walk":
@@ -116,14 +125,9 @@ public class TileListener extends MouseAdapter {
         switch (state) {
             case IDLE_P1:
                 selectedTile = (Tile) e.getSource();
-                // System.out.println("("+(int)selectedTile.d.getX() +","+
-                // (int)selectedTile.d.getY()+")");
 
                 if (selectedTile.troop != null && selectedTile.troop.player == 1) {
-                    // popup = new PopUp(field, (int)selectedTile.d.getX(),
-                    // (int)selectedTile.d.getY(), this);
                     currentTroop = selectedTile.troop;
-                    // state = States.POPUP_P1;
                     changeState("popup");
                 } else {
                     field.changeInfoLabel("Choose your troop P1");
@@ -144,7 +148,10 @@ public class TileListener extends MouseAdapter {
                 if (checkRange(currentTroop, actionTile, "shoot")) {
                     if (field.eliminateTroop(actionTile.d)) {
                         prevState = state;
+
                         state = States.END_OF_THE_GAME;
+                        mouseClicked(e);
+
                     } else {
                         field.changeInfoLabel("Turn P2");
                         state = States.IDLE_P2;
@@ -158,8 +165,6 @@ public class TileListener extends MouseAdapter {
 
             case WALK_P1:
                 actionTile = (Tile) e.getSource();
-                // if(checkRange(currentTroop, actionTile, "walk")){
-
                 if (checkRange(currentTroop, actionTile, "walk")) {
                     currentTroop.move(actionTile.d);
                     field.moveTroop(selectedTile.d, actionTile.d);
@@ -190,10 +195,7 @@ public class TileListener extends MouseAdapter {
                 selectedTile = (Tile) e.getSource();
 
                 if (selectedTile.troop != null && selectedTile.troop.player == 2) {
-                    // popup = new PopUp(field, (int)selectedTile.d.getX(),
-                    // (int)selectedTile.d.getY(), this);
                     currentTroop = selectedTile.troop;
-                    // state = States.POPUP_P2;
                     changeState("popup");
                 } else {
                     field.changeInfoLabel("Choose your troop P2");
@@ -213,7 +215,10 @@ public class TileListener extends MouseAdapter {
                 if (checkRange(currentTroop, actionTile, "shoot")) {
                     if (field.eliminateTroop(actionTile.d)) {
                         prevState = state;
+                        
+
                         state = States.END_OF_THE_GAME;
+                        mouseClicked(e);
                     } else {
                         field.changeInfoLabel("Turn P1");
 
@@ -229,7 +234,6 @@ public class TileListener extends MouseAdapter {
 
             case WALK_P2:
                 actionTile = (Tile) e.getSource();
-                // if(checkRange(currentTroop, actionTile, "walk")){
 
                 if (checkRange(currentTroop, actionTile, "walk")) {
                     currentTroop.move(actionTile.d);
@@ -259,14 +263,13 @@ public class TileListener extends MouseAdapter {
 
             case END_OF_THE_GAME:
                 int winner = 0;
-                if (prevState == States.CHECK_ENEMIES_P1 || prevState == States.WALK_P1) {
+                if (prevState == States.SHOOT_P1 || prevState == States.WALK_P1) {
                     winner = 1;
                 } else {
                     winner = 2;
                 }
                 int screenWinner = winner + 2;
                 field.mf.changePanel(screenWinner);
-                System.out.println("P" + winner + " wins!!!!");
                 break;
 
             default:

@@ -1,4 +1,3 @@
-import java.awt.Point;
 import javax.swing.JLabel;
 
 public class Sprinter extends Troop{

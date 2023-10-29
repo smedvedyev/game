@@ -23,15 +23,9 @@ public class PopUp extends JFrame implements ActionListener{
     MainFrame mainFrame;
 
     PopUp(Field field, int x, int y, TileListener tl) {
-        // this.field = field;
-        // frame = field.mf.mainFrame;
         this.tl = tl;
         JPanel popUpPanel = new JPanel();
         popUpPanel.setBackground(Color.LIGHT_GRAY);
-
-        // JLabel popUpLabel = new JLabel("Choose your action");
-        // popUpPanel.add(popUpLabel);
-
         walk = new JButton("WALK");
         shoot = new JButton("SHOOT");
         popUpPanel.add(walk);
@@ -55,7 +49,6 @@ public class PopUp extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent p) {
         if (p.getSource().equals(walk)) {
-            System.out.println("He's a runner, he's a trackstar");
             tl.changeState("walk");
             pop.hide();
         } else if (p.getSource().equals(shoot)) {

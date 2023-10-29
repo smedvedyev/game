@@ -11,7 +11,7 @@ public class EndScreen extends JPanel implements ActionListener {
     JPanel endPanel;
     JLabel winnerText;
 
-    EndScreen(MainFrame mf, int n) {
+    EndScreen(MainFrame mf, int gameWinner) {
         this.mf = mf;
 
         endPanel = new JPanel(); //drawing?
@@ -22,7 +22,7 @@ public class EndScreen extends JPanel implements ActionListener {
 
         GridBagConstraints grid = new GridBagConstraints();
 
-        int winner = n - 2;
+        int winner = gameWinner - 2;
         winnerText = new JLabel();
         winnerText.setText("Congratualtions P" + winner + "!");
         winnerText.setFont(new Font("Sans", Font.PLAIN, 60));
