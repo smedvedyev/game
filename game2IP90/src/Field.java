@@ -18,7 +18,7 @@ public class Field extends JPanel {
     // { y , x} //
     // 1 cap,2 lob,2 inf, 1 sprinter, 1 tank
     private static int[][] INFANTRY = { { 0, 1 }, { 2, 0 }, { 8, 1 }, { 0, 15 }, { 6, 16 }, { 8, 15 } };
-    private static int[][] SPRINTER = { { 6, 0 }, { 2, 16 } };
+    private static int[][] SPRINTER = { { 3, 11 }, { 2, 16 } }; // { { 6, 0 }, { 2, 16 } };
     private static int[][] LOBBER = { { 3, 1 }, { 5, 1 }, { 3, 15 }, { 5, 15 } };
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
 
@@ -307,7 +307,7 @@ public class Field extends JPanel {
 
         wall1Image1 = new JLabel("", new ImageIcon(imgURLW1), JLabel.CENTER);
         wall1Image2 = new JLabel("", new ImageIcon(imgURLW1), JLabel.CENTER);
-        
+
         wall2Image1 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
         wall2Image2 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
         wall2Image3 = new JLabel("", new ImageIcon(imgURLW2), JLabel.CENTER);
@@ -332,7 +332,6 @@ public class Field extends JPanel {
 
         wall9Image = new JLabel("", new ImageIcon(imgURLW9), JLabel.CENTER);
 
-
         // put rocks
         Rock rock1 = new Rock((int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getX(),
                 (int) tiles[ROCKS[0][0]][ROCKS[0][1]].d.getY(), rockImage1);
@@ -356,7 +355,7 @@ public class Field extends JPanel {
         tiles[WALL_HOR[1][0]][WALL_HOR[1][1]].addObject(wallH_2, wallH_2.image);
         objects.add(wallH_1);
         objects.add(wallH_2);
-        
+
         // add VER walls
         Wall wallV_1 = new Wall((int) tiles[WALL_VER[0][0]][WALL_VER[0][1]].d.getX(),
                 (int) tiles[WALL_VER[0][0]][WALL_VER[0][1]].d.getY(), wall2Image1);
@@ -424,7 +423,7 @@ public class Field extends JPanel {
                 (int) tiles[WALL_COR1[0][0]][WALL_COR1[0][1]].d.getY(), wall7Image);
         tiles[WALL_COR1[0][0]][WALL_COR1[0][1]].addObject(wallWN, wallWN.image);
         objects.add(wallWN);
-        
+
         // add NORTH-EAST walls
         Wall wallNE = new Wall((int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getX(),
                 (int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getY(), wall8Image);
@@ -480,10 +479,10 @@ public class Field extends JPanel {
         return true;
     }
 
-    public boolean checkObstacle(Point troopLoc, Point destinationLoc, int diffX, int diffY) {
+    public boolean checkObstacle(Point troopLoc, Point destinationLoc, int diffX, int diffY) throws ObstacleException {
         int trace[][];
         if (diffX != 0 && diffY == 0) {
-            trace = new int[Math.abs(diffX) - 1][Math.abs(diffX) - 1];
+            trace = new int[Math.abs(diffX) - 1][2];
             if (diffX < 0) {
                 for (int i = -1, k = 0; i > diffX; i--, k++) {
                     trace[k][0] = i + (int) troopLoc.getX();
@@ -497,7 +496,7 @@ public class Field extends JPanel {
                 }
             }
         } else if (diffX == 0 && diffY != 0) {
-            trace = new int[Math.abs(diffY) - 1][Math.abs(diffY) - 1];
+            trace = new int[Math.abs(diffY) - 1][2];
             if (diffY < 0) {
                 for (int i = -1, k = 0; i > diffY; i--, k++) {
                     trace[k][0] = (int) troopLoc.getX();
@@ -511,7 +510,7 @@ public class Field extends JPanel {
                 }
             }
         } else {
-            trace = new int[Math.abs(diffY) - 1][Math.abs(diffY) - 1];
+            trace = new int[Math.abs(diffY) - 1][2];
             if (diffX < 0 && diffY < 0) {
                 for (int i = 1, k = 0; i < Math.abs(diffY); i++, k++) {
                     trace[k][0] = (int) troopLoc.getX() - i;
@@ -535,18 +534,23 @@ public class Field extends JPanel {
             }
 
         }
-
-        return trace(trace);
+        try{
+            return trace(trace);
+        }catch(ObstacleException oe){
+            throw oe;
+        }
     }
 
-    public boolean trace(int[][] trace) {
-        for(int i=0; i<trace.length;i++){
+    public boolean trace(int[][] trace) throws ObstacleException {
+
+        for (int i = 0; i < trace.length; i++) {
             // ||tiles[trace[i][0]][trace[i][1]].troop!=null
-            if(tiles[trace[i][0]][trace[i][1]].object!=null){
-                return false;
+            if (tiles[trace[i][1]][trace[i][0]].object != null) {
+                throw new ObstacleException("You hit an obstacle!");
             }
         }
         return true;
+
     }
 
     public void changeInfoLabel(String text) {

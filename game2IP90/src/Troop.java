@@ -29,7 +29,7 @@ public abstract class Troop {
     }
 
     public boolean shoot(int differenceX, int differenceY){
-        return differenceX <=shootRange && differenceY <= shootRange && (differenceX !=0 ^ differenceY!=0);
+        return differenceX <=shootRange && differenceY <= shootRange && (differenceX != 0 || differenceY!=0);
     }
     
     

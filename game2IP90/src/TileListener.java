@@ -24,14 +24,29 @@ public class TileListener extends MouseAdapter {
                 if (Math.abs(differenceX) <= t.walkRange && Math.abs(differenceY) <= t.walkRange) {
                     // within x and y walking range
                     if (Math.abs(differenceX) == Math.abs(differenceY)) {
-                        if (destinationTile.troop == null) {
+                        if (destinationTile.troop == null && destinationTile.object == null) {
+                            try {
+                                field.checkObstacle(t.location, destinationTile.d, differenceX, differenceY);
+                                res = true;
+                            }
+
+                            catch (ObstacleException oe) {
+                                field.changeInfoLabel(oe.getMessage());
+
+                            }
                             // target destination is empty
-                            res = true;
                         }
                     } else if (Math.abs(differenceX) != 0 ^ Math.abs(differenceY) != 0) {
-                        if (destinationTile.troop == null) {
-                            // target destination is empty
-                            res = true;
+                        if (destinationTile.troop == null && destinationTile.object == null) {
+                            try {
+                                field.checkObstacle(t.location, destinationTile.d, differenceX, differenceY);
+                                res = true;
+                            }
+
+                            catch (ObstacleException oe) {
+                                field.changeInfoLabel(oe.getMessage());
+
+                            }
                         }
                     }
                 }
@@ -40,11 +55,18 @@ public class TileListener extends MouseAdapter {
                 if (destinationTile.troop != null) {
                     // target is not empty
                     if (t.shoot(Math.abs(differenceX), Math.abs(differenceY))) {
-                        if (Math.abs(differenceX) > 1 && Math.abs(differenceY) > 1) {
-                            if (field.checkObstacle(t.location, destinationTile.d, differenceX, differenceY)) {
+                        System.out.println(differenceX + ", " + differenceY);
+                        if ((Math.abs(differenceX) > 1 || Math.abs(differenceY) > 1) && !(t instanceof Lobber)) {
+                            System.out.println("diff");
+                            try {
+                                field.checkObstacle(t.location, destinationTile.d, differenceX, differenceY);
                                 res = true;
+
+                            } catch (ObstacleException oe) {
+                                field.changeInfoLabel(oe.getMessage());
                             }
-                        }else{
+
+                        } else {
                             res = true;
                         }
                     }
@@ -129,7 +151,7 @@ public class TileListener extends MouseAdapter {
                     }
                 } else {
                     state = States.IDLE_P1;
-                    field.changeInfoLabel("There's no one on this tile!");
+                    field.changeInfoLabel("Missed, try again");
                     changeState("popup");
                 }
                 break;
@@ -214,7 +236,6 @@ public class TileListener extends MouseAdapter {
                     field.moveTroop(selectedTile.d, actionTile.d);
                     boolean res = false;
                     for (int i = 0; i < 17; i++) {
-                        System.out.println(i);
                         if (currentTroop.location.getX() == 0 && currentTroop.location.getY() == i) {
                             res = true;
                         }
