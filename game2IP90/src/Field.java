@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 
 import javax.print.StreamPrintServiceFactory;
@@ -15,11 +17,10 @@ public class Field extends JPanel {
 
     // { y , x} //
     // 1 cap,2 lob,2 inf, 1 sprinter, 1 tank
-    private static int[][] INFANTRY = { { 0, 1 }, { 8, 1 }, { 0, 15 }, { 8, 15 } };
+    private static int[][] INFANTRY = { { 0, 1 }, { 2, 0 }, { 8, 1 }, { 0, 15 }, { 6, 16 }, { 8, 15 } };
     private static int[][] SPRINTER = { { 6, 0 }, { 2, 16 } };
     private static int[][] LOBBER = { { 3, 1 }, { 5, 1 }, { 3, 15 }, { 5, 15 } };
     private static int[][] CAPITAN = { { 4, 1 }, { 4, 15 } };
-    private static int[][] TANK = { { 2, 0 }, { 6, 16 } };
 
     private static int[][] ROCKS = { { 1, 5 }, { 1, 11 }, { 8, 11 } };
     // wall piece that goes from left to right
@@ -59,9 +60,8 @@ public class Field extends JPanel {
     JLabel infImage2;
     JLabel infImage3;
     JLabel infImage4;
-
-    JLabel tankImage1;
-    JLabel tankImage2;
+    JLabel infImage5;
+    JLabel infImage6;
 
     JLabel lobberImage1;
     JLabel lobberImage2;
@@ -189,30 +189,35 @@ public class Field extends JPanel {
     }
 
     public void generateTroops() {
-        java.net.URL imgURLI = getClass().getResource("source/images/infantry.png");
-        java.net.URL imgURLT = getClass().getResource("source/images/tank.jpg");
-        java.net.URL imgURLC = getClass().getResource("source/images/cap.png");
-        java.net.URL imgURLS = getClass().getResource("source/images/sprint.png");
-        java.net.URL imgURLL = getClass().getResource("source/images/lobber.png");
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-        infImage1 = new JLabel("", new ImageIcon(imgURLI), JLabel.CENTER);
-        infImage2 = new JLabel("", new ImageIcon(imgURLI), JLabel.CENTER);
-        infImage3 = new JLabel("", new ImageIcon(imgURLI), JLabel.CENTER);
-        infImage4 = new JLabel("", new ImageIcon(imgURLI), JLabel.CENTER);
+        java.net.URL imgURLI1 = classLoader.getResource("source/images/infantry1.png");
+        java.net.URL imgURLC1 = classLoader.getResource("source/images/cap1.png");
+        java.net.URL imgURLS1 = classLoader.getResource("source/images/sprint1.png");
+        java.net.URL imgURLL1 = classLoader.getResource("source/images/lobber1.png");
 
-        tankImage1 = new JLabel("", new ImageIcon(imgURLT), JLabel.CENTER);
-        tankImage2 = new JLabel("", new ImageIcon(imgURLT), JLabel.CENTER);
+        java.net.URL imgURLI2 = classLoader.getResource("source/images/infantry2.png");
+        java.net.URL imgURLC2 = classLoader.getResource("source/images/cap2.png");
+        java.net.URL imgURLS2 = classLoader.getResource("source/images/sprint2.png");
+        java.net.URL imgURLL2 = classLoader.getResource("source/images/lobber2.png");
 
-        lobberImage1 = new JLabel("", new ImageIcon(imgURLL), JLabel.CENTER);
-        lobberImage2 = new JLabel("", new ImageIcon(imgURLL), JLabel.CENTER);
-        lobberImage3 = new JLabel("", new ImageIcon(imgURLL), JLabel.CENTER);
-        lobberImage4 = new JLabel("", new ImageIcon(imgURLL), JLabel.CENTER);
+        infImage1 = new JLabel("", new ImageIcon(imgURLI1), JLabel.CENTER);
+        infImage2 = new JLabel("", new ImageIcon(imgURLI1), JLabel.CENTER);
+        infImage3 = new JLabel("", new ImageIcon(imgURLI1), JLabel.CENTER);
+        infImage4 = new JLabel("", new ImageIcon(imgURLI2), JLabel.CENTER);
+        infImage5 = new JLabel("", new ImageIcon(imgURLI2), JLabel.CENTER);
+        infImage6 = new JLabel("", new ImageIcon(imgURLI2), JLabel.CENTER);
 
-        capitanImage1 = new JLabel("", new ImageIcon(imgURLC), JLabel.CENTER);
-        capitanImage2 = new JLabel("", new ImageIcon(imgURLC), JLabel.CENTER);
+        lobberImage1 = new JLabel("", new ImageIcon(imgURLL1), JLabel.CENTER);
+        lobberImage2 = new JLabel("", new ImageIcon(imgURLL1), JLabel.CENTER);
+        lobberImage3 = new JLabel("", new ImageIcon(imgURLL2), JLabel.CENTER);
+        lobberImage4 = new JLabel("", new ImageIcon(imgURLL2), JLabel.CENTER);
 
-        sprinterImage1 = new JLabel("", new ImageIcon(imgURLS), JLabel.CENTER);
-        sprinterImage2 = new JLabel("", new ImageIcon(imgURLS), JLabel.CENTER);
+        capitanImage1 = new JLabel("", new ImageIcon(imgURLC1), JLabel.CENTER);
+        capitanImage2 = new JLabel("", new ImageIcon(imgURLC2), JLabel.CENTER);
+
+        sprinterImage1 = new JLabel("", new ImageIcon(imgURLS1), JLabel.CENTER);
+        sprinterImage2 = new JLabel("", new ImageIcon(imgURLS2), JLabel.CENTER);
 
         // put infantry
         Infantry inf1 = new Infantry((int) tiles[INFANTRY[0][0]][INFANTRY[0][1]].d.getX(),
@@ -220,17 +225,26 @@ public class Field extends JPanel {
         Infantry inf2 = new Infantry((int) tiles[INFANTRY[1][0]][INFANTRY[1][1]].d.getX(),
                 (int) tiles[INFANTRY[1][0]][INFANTRY[1][1]].d.getY(), 1, infImage2);
         Infantry inf3 = new Infantry((int) tiles[INFANTRY[2][0]][INFANTRY[2][1]].d.getX(),
-                (int) tiles[INFANTRY[2][0]][INFANTRY[2][1]].d.getY(), 2, infImage3);
+                (int) tiles[INFANTRY[2][0]][INFANTRY[2][1]].d.getY(), 1, infImage3);
         Infantry inf4 = new Infantry((int) tiles[INFANTRY[3][0]][INFANTRY[3][1]].d.getX(),
                 (int) tiles[INFANTRY[3][0]][INFANTRY[3][1]].d.getY(), 2, infImage4);
+        Infantry inf5 = new Infantry((int) tiles[INFANTRY[4][0]][INFANTRY[4][1]].d.getX(),
+                (int) tiles[INFANTRY[4][0]][INFANTRY[4][1]].d.getY(), 2, infImage5);
+        Infantry inf6 = new Infantry((int) tiles[INFANTRY[5][0]][INFANTRY[5][1]].d.getX(),
+                (int) tiles[INFANTRY[5][0]][INFANTRY[5][1]].d.getY(), 2, infImage6);
         tiles[INFANTRY[0][0]][INFANTRY[0][1]].addTroop(inf1, inf1.image);
         tiles[INFANTRY[1][0]][INFANTRY[1][1]].addTroop(inf2, inf2.image);
         tiles[INFANTRY[2][0]][INFANTRY[2][1]].addTroop(inf3, inf3.image);
         tiles[INFANTRY[3][0]][INFANTRY[3][1]].addTroop(inf4, inf4.image);
+        tiles[INFANTRY[4][0]][INFANTRY[4][1]].addTroop(inf5, inf5.image);
+        tiles[INFANTRY[5][0]][INFANTRY[5][1]].addTroop(inf6, inf6.image);
         troops.add(inf1);
         troops.add(inf2);
         troops.add(inf3);
         troops.add(inf4);
+        troops.add(inf5);
+        troops.add(inf6);
+
         // put sprinters
         Sprinter sp1 = new Sprinter((int) tiles[SPRINTER[0][0]][SPRINTER[0][1]].d.getX(),
                 (int) tiles[SPRINTER[0][0]][SPRINTER[0][1]].d.getY(), 1, sprinterImage1);
@@ -269,32 +283,23 @@ public class Field extends JPanel {
         troops.add(cap1);
         troops.add(cap2);
 
-        // put tanks
-        Tank t1 = new Tank((int) tiles[TANK[0][0]][TANK[0][1]].d.getX(), (int) tiles[TANK[0][0]][TANK[0][1]].d.getY(),
-                1, tankImage1);
-        Tank t2 = new Tank((int) tiles[TANK[1][0]][TANK[1][1]].d.getX(),
-                (int) tiles[TANK[1][0]][TANK[1][1]].d.getY(), 2, tankImage2);
-        tiles[TANK[0][0]][TANK[0][1]].addTroop(t1, t1.image);
-        tiles[TANK[1][0]][TANK[1][1]].addTroop(t2, t2.image);
-        troops.add(t1);
-        troops.add(t2);
-
         revalidate();
         repaint();
     }
 
     public void generateObjects() {
-        java.net.URL imgURLR = getClass().getResource("source/images/rock.png");
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        java.net.URL imgURLR = classLoader.getResource("source/images/rock.png");
 
-        java.net.URL imgURLW1 = getClass().getResource("source/images/wall_H.png");
-        java.net.URL imgURLW2 = getClass().getResource("source/images/wall_V.png");
-        java.net.URL imgURLW3 = getClass().getResource("source/images/wall_N.png");
-        java.net.URL imgURLW4 = getClass().getResource("source/images/wall_S.png");
-        java.net.URL imgURLW5 = getClass().getResource("source/images/wall_W.png");
-        java.net.URL imgURLW6 = getClass().getResource("source/images/wall_E.png");
-        java.net.URL imgURLW7 = getClass().getResource("source/images/wall_W_N.png");
-        java.net.URL imgURLW8 = getClass().getResource("source/images/wall_E_N.png");
-        java.net.URL imgURLW9 = getClass().getResource("source/images/wall_W_S.png");
+        java.net.URL imgURLW1 = classLoader.getResource("source/images/wall_H.png");
+        java.net.URL imgURLW2 = classLoader.getResource("source/images/wall_V.png");
+        java.net.URL imgURLW3 = classLoader.getResource("source/images/wall_N.png");
+        java.net.URL imgURLW4 = classLoader.getResource("source/images/wall_S.png");
+        java.net.URL imgURLW5 = classLoader.getResource("source/images/wall_W.png");
+        java.net.URL imgURLW6 = classLoader.getResource("source/images/wall_E.png");
+        java.net.URL imgURLW7 = classLoader.getResource("source/images/wall_W_N.png");
+        java.net.URL imgURLW8 = classLoader.getResource("source/images/wall_N_E.png");
+        java.net.URL imgURLW9 = classLoader.getResource("source/images/wall_W_S.png");
 
         rockImage1 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
         rockImage2 = new JLabel("", new ImageIcon(imgURLR), JLabel.CENTER);
@@ -420,11 +425,11 @@ public class Field extends JPanel {
         tiles[WALL_COR1[0][0]][WALL_COR1[0][1]].addObject(wallWN, wallWN.image);
         objects.add(wallWN);
         
-        // add EAST-NORTH walls
-        Wall wallEN = new Wall((int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getX(),
+        // add NORTH-EAST walls
+        Wall wallNE = new Wall((int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getX(),
                 (int) tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].d.getY(), wall8Image);
-        tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].addObject(wallEN, wallEN.image);
-        objects.add(wallEN);
+        tiles[WALL_COR2[0][0]][WALL_COR2[0][1]].addObject(wallNE, wallNE.image);
+        objects.add(wallNE);
 
         // add WEST-SOUTH walls
         Wall wallWS = new Wall((int) tiles[WALL_COR3[0][0]][WALL_COR3[0][1]].d.getX(),
